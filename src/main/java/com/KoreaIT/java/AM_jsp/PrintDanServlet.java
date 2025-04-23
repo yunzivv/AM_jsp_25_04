@@ -15,10 +15,18 @@ public class PrintDanServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		
-		int dan = Integer.parseInt(request.getParameter("dan"));
-		response.getWriter().append(String.format("== %d단 ==<br>", dan));
-		for(int i = 1; i < 10; i++) {
-			response.getWriter().append(String.format("%d * %d = %d<br>", dan, i, dan * i));			
+		String dan = request.getParameter("dan");
+		String limit = request.getParameter("limit");
+		
+		if(dan == null) dan = "1";
+		if(limit == null) limit = "1";
+		
+		int ddan = Integer.parseInt(dan);
+		int dlimit = Integer.parseInt(limit);
+		
+		response.getWriter().append(String.format("== %d단 ==<br>", ddan));
+		for(int i = 1; i <= dlimit; i++) {
+			response.getWriter().append(String.format("%d * %d = %d<br>", ddan, i, ddan * i));			
 		}
 	}
 
