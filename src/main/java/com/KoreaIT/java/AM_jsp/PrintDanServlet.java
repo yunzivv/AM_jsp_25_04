@@ -2,7 +2,6 @@ package com.KoreaIT.java.AM_jsp;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ public class PrintDanServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
+		// request.getRequestDispatcher("jsp/home/printDan.jsp");
 		
 		String dan = request.getParameter("dan");
 		String limit = request.getParameter("limit");
@@ -28,19 +28,14 @@ public class PrintDanServlet extends HttpServlet {
 		int ddan = Integer.parseInt(dan);
 		int dlimit = Integer.parseInt(limit);
 		
-		PrintWriter out = response.getWriter();
-		out.print("<html>");
-		out.print("<head> </head>"); 
-		out.print("<body style='color:" + color + "'>");
+		response.getWriter().print("<div style='color:" + color + "'>");
 		
-		out.append(String.format("== %d단 ==<br>", ddan));
+		response.getWriter().append(String.format("== %d단 ==<br>", ddan));
 		for(int i = 1; i <= dlimit; i++) {
-			out.append(String.format("%d * %d = %d<br>", ddan, i, ddan * i));			
+			response.getWriter().append(String.format("%d * %d = %d<br>", ddan, i, ddan * i));			
 		}
 		
-		out.print("</body>");
-		out.print("</html>");
-		
+		response.getWriter().print("</div>");
 	}
 
 }
