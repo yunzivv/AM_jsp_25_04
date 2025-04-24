@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import com.KoreaIT.java.AM_jsp.util.DBUtil;
+import com.KoreaIT.java.AM_jsp.util.SecSql;
 import java.util.List;
 import java.util.Map;
 
@@ -48,12 +50,16 @@ public class ArticleListServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 			
-			String sql = "SELECT * FROM article;";
+			SecSql sql = SecSql.from("SELECT *");
+			sql.append("FROM article");
+			sql.append("ORDER BY id DESC;");
+
 			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
-			
+
 			request.setAttribute("articleRows", articleRows);
+
 //			response.getWriter().append(articleRows.toString());
-			
+
 			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	
         } catch (SQLException e) {

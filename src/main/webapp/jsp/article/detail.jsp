@@ -8,7 +8,7 @@
 Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
 %>
 
-
+<!-- ctrl shift c -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +23,9 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 		Detail
 	</h2>
 
+	<button>modify</button>
+	<button onClick="alert('정말 삭제할거야? ㅠㅠ😢')">delete</button>
+	
 	<h3>
 	regDate : 
 	<%=articleRow.get("regDate") %>
