@@ -25,14 +25,15 @@ public class ArticleDeleteServlet extends HttpServlet {
 
 		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();
 
 		}
 
-		String url = "jdbc:mysql://127.0.0.1:3306/AM_JSP_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
+
+		String url = "jdbc:mysql://127.0.0.1:3306/AM_DB_25_03?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
 
@@ -43,20 +44,15 @@ public class ArticleDeleteServlet extends HttpServlet {
 			response.getWriter().append("연결 성공!");
 
 			int id = Integer.parseInt(request.getParameter("id"));
-			
-			System.out.println(id);
-			
-			System.out.println(1);
 
 			SecSql sql = SecSql.from("DELETE");
 			sql.append("FROM article");
 			sql.append("WHERE id = ?;", id);
 
-			System.out.println(2);
 			DBUtil.delete(conn, sql);
-			System.out.println(3);
+
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 게시물 삭제'); location.replace('list');</script>", id));
+					.append(String.format("<script>alert('%d번 글이 삭제됨'); location.replace('list');</script>", id));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

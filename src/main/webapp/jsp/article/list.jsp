@@ -40,11 +40,11 @@ table>thead>tr>th, table>tbody>tr>td {
 			<tr style="text-align: center;">
 				<td><%=articleRow.get("id")%>번</td>
 				<td><%=articleRow.get("regDate")%></td>
-				<td><%=articleRow.get("title")%></td>
+				<td><a href="detail?id=<%=articleRow.get("id")%>"><%=articleRow.get("title")%></a></td>
 				<td><%=articleRow.get("body")%></td>
 				<td><a
 					onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) { return false; }"
-					href="doDelete?id=<%=articleRow.get("id")%>">del</a></td>
+					href="doDelete?id=<%=articleRow.get("id")%>">delete</a></td>
 			</tr>
 			<%
 			}
