@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 
 @WebServlet("/article/list")
@@ -18,17 +20,21 @@ public class ArticleListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		// DB 연결
+		response.setContentType("text/html;charset=UTF-8");
+		
 		try {
 	        // 드라이버 연결
 	        Class.forName("com.mysql.jdbc.Driver");
 	        System.out.println("연결 성공!");
+	        response.getWriter().append("드라이버 로딩 성공! ");
 
 	    } catch (ClassNotFoundException e) {
 	        System.out.println("드라이버 로딩 실패" + e);
+	        response.getWriter().append("드라이버 로딩실패");
 	    }
 
-		response.getWriter().append("123");
-		response.setContentType("text/html;charset=UTF-8");
 		
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_DB_25_03?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
@@ -38,11 +44,30 @@ public class ArticleListServlet extends HttpServlet {
 		
 		
 		try {
-            conn = DriverManager.getConnection(url, user, password);
-            response.getWriter().append("연결 성공");
+			conn = DriverManager.getConnection(url, user, password);
+			response.getWriter().append("연결 성공!");
 
+			DBUtil dbUtil = new DBUtil(request, response);
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			String sql = "Select * From article where id =" + no;
+			
+			Map<String, Object> articleMap = DBUtil.selectRow(conn, sql);
+
+			request.getRequestDispatcher("/jsp/article/articleDetail.jsp").forward(request, response);
+			
+//			String sql = "SELECT * FROM article;";
+//
+//			List<Map<String, Object>> articleRows = dbUtil.selectRows(conn, sql);
+//			request.setAttribute("articleRows", articleRows);
+			
+//			response.getWriter().append(articleRows.toString());
+
+//			request.getRequestDispatcher("/jsp/article/printList.jsp").forward(request, response);
+			
         } catch (SQLException e) {
             System.out.println("에러 : " + e);
+            response.getWriter().append("연결실패");
         } finally {
             try {
                 if (conn != null && !conn.isClosed()) {
@@ -50,6 +75,8 @@ public class ArticleListServlet extends HttpServlet {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                
+                
             }
         }
 	}
