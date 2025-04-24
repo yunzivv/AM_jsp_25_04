@@ -21,7 +21,7 @@ List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getA
 		%>
 		<li>
 		<%=articleRows.get(i).get("id")%>번, <%=articleRows.get(i).get("regDate")%>,
-		<a href="articleDetail?id=<%=articleRows.get(i).get("id")%>"><%=articleRows.get(i).get("title")%></a>
+		<a href="detail?id=<%=articleRows.get(i).get("id")%>"><%=articleRows.get(i).get("title")%></a>
 			
 		</li>
 		<%

@@ -1,4 +1,4 @@
-package com.KoreaIT.java.AM_jsp;
+package com.KoreaIT.java.AM_jsp.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,9 +12,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.KoreaIT.java.AM_jsp.util.DBUtil;
+
 
 @WebServlet("/article/list")
-public class ArticleDetailServlet extends HttpServlet {
+public class ArticleListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
@@ -45,17 +47,14 @@ public class ArticleDetailServlet extends HttpServlet {
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
-
-			DBUtil dbUtil = new DBUtil(request, response);
 			
-			int id = Integer.parseInt(request.getParameter("id"));
-			String sql = "Select * From article where id =" + id;
+			String sql = "SELECT * FROM article;";
+			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
 			
-			Map<String, Object> articleRow = dbUtil.selectRow(conn, sql);
-			request.setAttribute("articleRow", articleRow);
-
-			request.getRequestDispatcher("/jsp/article/articleDetail.jsp").forward(request, response);
+			request.setAttribute("articleRows", articleRows);
+//			response.getWriter().append(articleRows.toString());
 			
+			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	
         } catch (SQLException e) {
             System.out.println("에러 : " + e);

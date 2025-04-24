@@ -11,30 +11,19 @@ String color = request.getParameter("color");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구구단 출력</title>
+<title>Main</title>
 
-<style>
-.color {
-	color: <%=color%>
-}
-</style>
 
 </head>
 <body>
-	<h2><%=dan%>단
+	<h2>Main page 
 	</h2>
-
-	<%
-	for (int i = 1; i <= limit; i++) {
-	%>
-
-	<div>
-	<%=dan%> * <%=i%> = <%=dan * i%>
-	</div>
-
-	<%
-	}
-	%>
+	
+	<ul>
+		<li>
+			<a href="../article/list">show list</a>
+		</li>
+	</ul>
 
 </body>
 </html>
