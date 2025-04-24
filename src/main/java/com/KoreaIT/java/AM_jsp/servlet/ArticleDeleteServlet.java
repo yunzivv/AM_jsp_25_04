@@ -1,10 +1,5 @@
 package com.KoreaIT.java.AM_jsp.servlet;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,57 +8,68 @@ import java.util.List;
 import java.util.Map;
 
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
+import com.KoreaIT.java.AM_jsp.util.SecSql;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/delete")
+@WebServlet("/article/doDelete")
 public class ArticleDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		// DB 연결
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
+
+		// DB 연결
 		try {
-	        // 드라이버 연결
-	        Class.forName("com.mysql.jdbc.Driver");
-	        System.out.println("연결 성공!");
-	        response.getWriter().append("드라이버 로딩 성공! ");
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("클래스 x");
+			e.printStackTrace();
 
-	    } catch (ClassNotFoundException e) {
-	        System.out.println("드라이버 로딩 실패" + e);
-	        response.getWriter().append("드라이버 로딩실패");
-	    }
+		}
 
-		
-		String url = "jdbc:mysql://127.0.0.1:3306/AM_DB_25_03?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
+		String url = "jdbc:mysql://127.0.0.1:3306/AM_JSP_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
-		
+
 		Connection conn = null;
-		
+
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
-	
-	
-        } catch (SQLException e) {
-            System.out.println("에러 : " + e);
-            response.getWriter().append("연결실패");
-        } finally {
-            try {
-                if (conn != null && !conn.isClosed()) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                
-                
-            }
-        }
-	}
 
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			System.out.println(id);
+			
+			System.out.println(1);
+
+			SecSql sql = SecSql.from("DELETE");
+			sql.append("FROM article");
+			sql.append("WHERE id = ?;", id);
+
+			System.out.println(2);
+			DBUtil.delete(conn, sql);
+			System.out.println(3);
+			response.getWriter()
+					.append(String.format("<script>alert('%d번 게시물 삭제'); location.replace('list');</script>", id));
+
+		} catch (SQLException e) {
+			System.out.println("에러 1 : " + e);
+		} finally {
+			try {
+				if (conn != null && !conn.isClosed()) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
 }
