@@ -14,14 +14,15 @@ List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getA
 </head>
 <body>
 	<h2>Article List</h2>
+	
 	<ul>
 		<%
 		for (int i = 0; i < articleRows.size(); i++) {
 		%>
 		<li>
-			<%=articleRows.get(i).get("id")%>번, <%=articleRows.get(i).get("regDate")%>,
-			<%=articleRows.get(i).get("title")%>, <%=articleRows.get(i).get("body")%>
-
+		<%=articleRows.get(i).get("id")%>번, <%=articleRows.get(i).get("regDate")%>,
+		<a href="articleDetail?id=<%=articleRows.get(i).get("id")%>"><%=articleRows.get(i).get("title")%></a>
+			
 		</li>
 		<%
 		}

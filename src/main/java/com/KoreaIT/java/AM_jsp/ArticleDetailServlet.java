@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @WebServlet("/article/list")
-public class ArticleListServlet extends HttpServlet {
+public class ArticleDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
@@ -48,15 +48,14 @@ public class ArticleListServlet extends HttpServlet {
 
 			DBUtil dbUtil = new DBUtil(request, response);
 			
-			String sql = "SELECT * FROM article;";
-			System.out.println(1);
+			int id = Integer.parseInt(request.getParameter("id"));
+			String sql = "Select * From article where id =" + id;
+			
+			Map<String, Object> articleRow = dbUtil.selectRow(conn, sql);
+			request.setAttribute("articleRow", articleRow);
 
-			List<Map<String, Object>> articleRows = dbUtil.selectRows(conn, sql);
+			request.getRequestDispatcher("/jsp/article/articleDetail.jsp").forward(request, response);
 			
-			request.setAttribute("articleRows", articleRows);
-//			response.getWriter().append(articleRows.toString());
-			
-			request.getRequestDispatcher("/jsp/article/printList.jsp").forward(request, response);
 	
         } catch (SQLException e) {
             System.out.println("에러 : " + e);
