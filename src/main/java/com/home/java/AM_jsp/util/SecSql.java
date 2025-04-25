@@ -1,4 +1,4 @@
-package com.java.AM_jsp.util;
+package com.home.java.AM_jsp.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

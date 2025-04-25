@@ -25,7 +25,7 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 
 	<button>modify</button>
 
-	<button><a onClick="if ( confirm('정말 삭제할거야? ㅠㅠ😢?') == false ) { return false; })" 
+	<button><a onClick="if ( confirm('정말 삭제할거야? ㅠㅠ😢?') == false ) { return false; }" 
 	href="doDelete?id=<%=articleRow.get("id")%>">delete</a></button>
 	
 	<h3>

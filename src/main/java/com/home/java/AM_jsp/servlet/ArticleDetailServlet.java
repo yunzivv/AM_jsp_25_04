@@ -1,4 +1,4 @@
-package com.java.AM_jsp.servlet;
+package com.home.java.AM_jsp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import com.java.AM_jsp.util.DBUtil;
-import com.java.AM_jsp.util.SecSql;
+import com.home.java.AM_jsp.util.DBUtil;
+import com.home.java.AM_jsp.util.SecSql;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doDelete")
-public class ArticleDeleteServlet extends HttpServlet {
+@WebServlet("/article/detail")
+public class ArticleDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,13 +25,12 @@ public class ArticleDeleteServlet extends HttpServlet {
 
 		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();
 
 		}
-
 
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_JSP_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
@@ -45,14 +44,17 @@ public class ArticleDeleteServlet extends HttpServlet {
 
 			int id = Integer.parseInt(request.getParameter("id"));
 
-			SecSql sql = SecSql.from("DELETE");
+//			String sql = String.format("SELECT * FROM article WHERE id = %d;", id);
+
+			SecSql sql = SecSql.from("SELECT *");
 			sql.append("FROM article");
 			sql.append("WHERE id = ?;", id);
 
-			DBUtil.delete(conn, sql);
+			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 
-			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 삭제됨'); location.replace('list');</script>", id));
+			request.setAttribute("articleRow", articleRow);
+
+			request.getRequestDispatcher("/jsp/article/detail.jsp").forward(request, response);
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

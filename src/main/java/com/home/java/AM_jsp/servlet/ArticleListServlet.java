@@ -1,4 +1,4 @@
-package com.java.AM_jsp.servlet;
+package com.home.java.AM_jsp.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,12 +9,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.java.AM_jsp.util.DBUtil;
-import com.java.AM_jsp.util.SecSql;
 import java.util.List;
 import java.util.Map;
 
-import com.java.AM_jsp.util.DBUtil;
+import com.home.java.AM_jsp.util.DBUtil;
+import com.home.java.AM_jsp.util.SecSql;
 
 
 @WebServlet("/article/list")
