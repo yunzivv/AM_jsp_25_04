@@ -11,26 +11,34 @@
 <meta charset="UTF-8">
 <title>Write Article</title>
 <style>
-input {
-	width: 800px;
+
+section {
+	text-align: center;
+}
+input, textarea {
+	width: 700px;
 }
 </style>
 </head>
 <body>
 
-	<h2>
+	<h2 style="text-align: center;">
 		Article Write
 	</h2>
 
-	<button>
-		작성하기
-	</button>
 
-	<form>
- 		Title :<br>
-  		<input type="text" name="title" placeholder="제목 입력"><br>
-  		Body :<br>
-  		<input type="textarea" name="body" placeholder="내용 입력"><br>
+
+	<form action="doInsert" method="GET">
+		
+		<div style="display:flex; flex-direction:column; justify-content: center;">
+  			<section><input type="text" name="title" placeholder="제목을 입력하세요"></section>
+  			<br>
+  			<section><textarea  style="height:400px;" name="body" placeholder="내용을 입력하세요"></textarea></section>
+  			<br>
+  			<section><input type="submit" value="작성하기"></section>
+ 		</div>
+  		
+  		
 	</form>
 
 </body>

@@ -21,6 +21,7 @@ table>thead>tr>th, table>tbody>tr>td {
 	<h2>게시글 목록</h2>
 
 	<a href="../home/main">메인으로 이동</a>
+	<button><a href="insertForm">새 글 작성</a></button>
 
 	<table style="border-collapse: collapse; border-color: green;"
 		border="1px">

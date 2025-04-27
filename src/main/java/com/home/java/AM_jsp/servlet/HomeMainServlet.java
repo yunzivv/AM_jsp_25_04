@@ -8,12 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/home/main")
+@WebServlet("/home/main") // 1
 public class HomeMainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Keroro").append(request.getContextPath());
-		request.getRequestDispatcher("/jsp/home/main.jsp").forward(request, response);
+		response.setContentType("text/html;charset=UTF-8"); // 2
+		request.getRequestDispatcher("/jsp/home/main.jsp").forward(request, response); // 3
 	}
 
 }
