@@ -24,7 +24,7 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 	</h2>
 
 	<button>
-		<a href="doUpdate">modify</a>
+		<a href="updateForm?id=<%=articleRow.get("id")%>">modify</a>
 	</button>
 
 	<button><a onClick="if ( confirm('정말 삭제할거야? ㅠㅠ😢?') == false ) { return false; }" 

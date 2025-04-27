@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doUpdate")
-public class ArticleUpdateServlet extends HttpServlet {
+@WebServlet("/article/updateForm")
+public class ArticleUpdateFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -44,8 +44,6 @@ public class ArticleUpdateServlet extends HttpServlet {
 
 			int id = Integer.parseInt(request.getParameter("id"));
 
-//			String sql = String.format("SELECT * FROM article WHERE id = %d;", id);
-
 			SecSql sql = SecSql.from("SELECT *");
 			sql.append("FROM article");
 			sql.append("WHERE id = ?;", id);
@@ -54,7 +52,7 @@ public class ArticleUpdateServlet extends HttpServlet {
 
 			request.setAttribute("articleRow", articleRow);
 
-			request.getRequestDispatcher("/jsp/article/detail.jsp").forward(request, response);
+			request.getRequestDispatcher("/jsp/article/update.jsp").forward(request, response);
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

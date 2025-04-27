@@ -28,7 +28,7 @@ input, textarea {
 
 
 
-	<form action="doInsert" method="GET">
+	<form action="doWrite" method="GET">
 		
 		<div style="display:flex; flex-direction:column; justify-content: center;">
   			<section><input type="text" name="title" placeholder="제목을 입력하세요"></section>

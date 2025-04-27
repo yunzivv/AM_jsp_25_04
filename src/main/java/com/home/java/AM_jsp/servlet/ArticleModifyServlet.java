@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import com.home.java.AM_jsp.util.DBUtil;
 import com.home.java.AM_jsp.util.SecSql;
 
-@WebServlet("/article/doInsert")
-public class ArticleInsertServlet extends HttpServlet {
+@WebServlet("/article/doModify")
+public class ArticleModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,18 +41,15 @@ public class ArticleInsertServlet extends HttpServlet {
 
 			String title = request.getParameter("title");
 			String body = request.getParameter("body");
+			int id = Integer.parseInt(request.getParameter("id")); // id가 파라미터로 넘어오지 않는 것 같다.
 
-			SecSql sql = SecSql.from("INSERT INTO article");
-	        sql.append("SET regDate = NOW(),");
-	        sql.append("updateDate = NOW(),");
-	        sql.append("loginId = 1,");
-	        sql.append("title = ?,", title);
-	        sql.append("`body` = ?;", body);
-
-			int id = DBUtil.insert(conn, sql);
+			SecSql sql = SecSql.from("UPDATE article");
+	        sql.append("SET title = ?,", title);
+	        sql.append("`body` = ?", body);
+	        sql.append("WHERE id = ?;", id);
 
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 작성되었습니다.'); location.replace('list');</script>", id));
+					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('list');</script>", id));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

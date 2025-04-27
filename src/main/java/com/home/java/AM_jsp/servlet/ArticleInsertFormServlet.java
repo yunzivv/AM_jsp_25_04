@@ -42,30 +42,8 @@ public class ArticleInsertFormServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
-//			int id = Integer.parseInt(request.getParameter("id"));
-//
-//			SecSql sql = SecSql.from("SELECT *");
-//			sql.append("FROM article");
-//			sql.append("WHERE id = ?;", id);
-//
-//			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-//
+			
 			request.getRequestDispatcher("/jsp/article/insert.jsp").forward(request, response);
-//			
-//			String title = request.getParameter("title");
-//			String body = request.getParameter("body");
-//
-//			SecSql sql = SecSql.from("INSERT INTO article");
-//			sql.append("regDate = NOW(),");
-//			sql.append("updateDate = NOW(),");
-//			sql.append("loginId = 1");
-//			sql.append("title = ?", title);
-//			sql.append("`body` = ?;", body);
-//			
-//			int id = DBUtil.insert(conn, sql);
-//			
-//			response.getWriter()
-//			.append(String.format("<script>alert('%d번 글이 작성되었습니다.'); location.replace('list');</script>", id));
 			
 			
 		} catch (SQLException e) {

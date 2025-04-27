@@ -22,18 +22,16 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 		<%=articleRow.get("id") %>
 		Modify
 	</h2>
-
-	<form>
- 		Title :<br>
-  		<input type="text" name="title" placeholder="수정할 제목 입력"><br>
-  		Body :<br>
-  		<input type="textarea" name="body" placeholder="수정할 내용 입력"><br>
+<%-- detail?id=<%=articleRow.get("id")%> --%>
+	<form action="doModify" method="GET">
+	<div style="display:flex; flex-direction:column; justify-content: center;">
+  		<section><input type="text" name="title" value="<%=articleRow.get("title") %>"></section>
+  		<br>
+  		<section><input type="textarea" name="body" value="<%=articleRow.get("body") %>"></section>
+  		<br>
+  		<section><input type="submit" value="수정하기"></section>
+  	</div>
 	</form>
-
-
-	<button><a onClick="if ( confirm('수정하시겠습니까?') == false ) { return false; })" 
-	href="#">수정</a></button>
-	
 	
 
 </body>
