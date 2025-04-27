@@ -57,7 +57,6 @@ public class ArticleListServlet extends HttpServlet {
 
 			request.setAttribute("articleRows", articleRows);
 
-//			response.getWriter().append(articleRows.toString());
 
 			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	

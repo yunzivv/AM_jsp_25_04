@@ -14,6 +14,15 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 <head>
 <meta charset="UTF-8">
 <title>Detail Article</title>
+<style>
+
+h2, section {
+	text-align: center;
+}
+input, textarea {
+	width: 700px;
+}
+</style>
 </head>
 <body>
 
@@ -27,7 +36,7 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 	<div style="display:flex; flex-direction:column; justify-content: center;">
   		<section><input type="text" name="title" value="<%=articleRow.get("title") %>"></section>
   		<br>
-  		<section><input type="textarea" name="body" value="<%=articleRow.get("body") %>"></section>
+  		<section><textarea><%=articleRow.get("body") %></textarea></section>
   		<br>
   		<section><input type="submit" value="수정하기"></section>
   	</div>
