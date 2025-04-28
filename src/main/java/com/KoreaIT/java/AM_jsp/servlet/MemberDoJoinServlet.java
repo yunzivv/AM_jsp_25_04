@@ -40,19 +40,27 @@ public class MemberDoJoinServlet extends HttpServlet {
 
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			response.getWriter().append("연결 성공!");
-
 			String loginId = request.getParameter("loginId");
 			String loginPw = request.getParameter("loginPw");
 			String name = request.getParameter("name");
 
 
-	        SecSql sql = SecSql.from("INSERT INTO `member`");
+			SecSql sql = SecSql.from("SELECT * FROM `member`");
+			List<Map<String, Object>> memberRows = DBUtil.selectRows(conn, sql);
+			
+			for(Map member : memberRows) {
+				if(member.get("loginid").equals(loginId)) {
+					response.getWriter()
+					.append("<script>alert('중복된 아이디입니다.'); location.replace('joinForm');</script>");
+				}
+			}
+			
+			sql.from("INSERT INTO `member`");
 	        sql.append("SET regDate = NOW(),");
-	        sql.append("SET updateDate = NOW(),");
-	        sql.append("SET loginID = ?,", loginId);
-	        sql.append("SET loginPw = ?,", loginPw);
-	        sql.append("SET `name` = ?;", name);
+	        sql.append("updateDate = NOW(),");
+	        sql.append("loginID = ?,", loginId);
+	        sql.append("loginPw = ?,", loginPw);
+	        sql.append("`name` = ?;", name);
 	        
 	        DBUtil.insert(conn, sql);
 

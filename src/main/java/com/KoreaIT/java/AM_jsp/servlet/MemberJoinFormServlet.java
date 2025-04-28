@@ -42,12 +42,12 @@ public class MemberJoinFormServlet extends HttpServlet {
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 
-			SecSql sql = SecSql.from("SELECT * FROM `member`");
-			sql.append("ORDER BY id DESC;");
+//			SecSql sql = SecSql.from("SELECT * FROM `member`");
+//			sql.append("ORDER BY id DESC;");
+//			
+//			List<Map<String, Object>> memberRows = DBUtil.selectRows(conn, sql);
 			
-			List<Map<String, Object>> memberRows = DBUtil.selectRows(conn, sql);
-			
-			request.setAttribute("memberRows", memberRows);
+//			request.setAttribute("memberRows", memberRows);
 
 			request.getRequestDispatcher("/jsp/member/join.jsp").forward(request, response);
 		

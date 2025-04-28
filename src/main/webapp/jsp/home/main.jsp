@@ -24,6 +24,9 @@ a {
 		<li>
 		<button><a href="../article/list">리스트로 이동</a></button>
 		</li>
+		<li>
+		<button><a href="../member/joinForm">회원가입</a></button>
+		</li>
 	</ul>
 
 </body>
