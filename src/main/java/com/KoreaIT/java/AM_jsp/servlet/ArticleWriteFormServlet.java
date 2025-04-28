@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doDelete")
-public class ArticleDeleteServlet extends HttpServlet {
+@WebServlet("/article/writeForm")
+public class ArticleWriteFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,14 +25,14 @@ public class ArticleDeleteServlet extends HttpServlet {
 
 		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();
 
 		}
 
-
+		// DB 이름
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
@@ -43,17 +43,10 @@ public class ArticleDeleteServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			SecSql sql = SecSql.from("DELETE");
-			sql.append("FROM article");
-			sql.append("WHERE id = ?;", id);
-
-			DBUtil.delete(conn, sql);
-
-			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 삭제됨'); location.replace('list');</script>", id));
-
+			
+			request.getRequestDispatcher("/jsp/article/insert.jsp").forward(request, response);
+			
+			
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
 		} finally {
@@ -67,5 +60,6 @@ public class ArticleDeleteServlet extends HttpServlet {
 		}
 
 	}
+
 
 }

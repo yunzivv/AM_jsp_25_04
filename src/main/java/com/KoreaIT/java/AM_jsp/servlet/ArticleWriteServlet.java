@@ -16,23 +16,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doDelete")
-public class ArticleDeleteServlet extends HttpServlet {
+@WebServlet("/article/doWrite")
+public class ArticleWriteServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 
-		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();
 
 		}
 
-
+		// DB 이름
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
@@ -41,18 +41,20 @@ public class ArticleDeleteServlet extends HttpServlet {
 
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			response.getWriter().append("연결 성공!");
+			String title = request.getParameter("title");
+			String body = request.getParameter("body");
 
-			int id = Integer.parseInt(request.getParameter("id"));
+			SecSql sql = SecSql.from("INSERT INTO article");
+	        sql.append("SET regDate = NOW(),");
+	        sql.append("updateDate = NOW(),");
+	        sql.append("loginId = 1,"); // memberID -> loginId
+	        sql.append("title = ?,", title);
+	        sql.append("`body` = ?;", body);
 
-			SecSql sql = SecSql.from("DELETE");
-			sql.append("FROM article");
-			sql.append("WHERE id = ?;", id);
-
-			DBUtil.delete(conn, sql);
+			int id = DBUtil.insert(conn, sql);
 
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 삭제됨'); location.replace('list');</script>", id));
+					.append(String.format("<script>alert('%d번 글이 작성되었습니다.'); location.replace('list');</script>", id));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
@@ -66,6 +68,11 @@ public class ArticleDeleteServlet extends HttpServlet {
 			}
 		}
 
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

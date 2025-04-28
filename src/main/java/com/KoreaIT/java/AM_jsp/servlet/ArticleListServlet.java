@@ -39,8 +39,8 @@ public class ArticleListServlet extends HttpServlet {
 	        response.getWriter().append("드라이버 로딩실패");
 	    }
 
-		
-		String url = "jdbc:mysql://127.0.0.1:3306/AM_DB_25_03?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
+		// DB 이름
+		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
 		
@@ -50,15 +50,33 @@ public class ArticleListServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 			
-			SecSql sql = SecSql.from("SELECT *");
+			int page = 1;
+			
+			if(request.getParameter("page") != null && request.getParameter("page").length() != 0) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			
+			int itemsInAPage = 10;
+			int limitFrom = (page - 1) * itemsInAPage;
+			
+			SecSql sql = SecSql.from("SELECT COUNT(*)");
+			sql.append("FROM article;");
+
+			int totalCnt = DBUtil.selectRowIntValue(conn, sql);
+			int totalPage = (int) Math.ceil(totalCnt / (double)itemsInAPage);
+
+			sql = SecSql.from("SELECT *");
 			sql.append("FROM article");
-			sql.append("ORDER BY id DESC;");
+			sql.append("ORDER BY id DESC");
+			sql.append("LIMIT ?, ?;", limitFrom, itemsInAPage);
 
 			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
-
+			
+			request.setAttribute("page", page);
 			request.setAttribute("articleRows", articleRows);
+			request.setAttribute("totalCnt", totalCnt);
+			request.setAttribute("totalPage", totalPage);
 
-//			response.getWriter().append(articleRows.toString());
 
 			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	
