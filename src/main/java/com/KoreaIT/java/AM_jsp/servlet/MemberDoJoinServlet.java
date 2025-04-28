@@ -45,19 +45,17 @@ public class MemberDoJoinServlet extends HttpServlet {
 			String name = request.getParameter("name");
 
 
-			SecSql sql = SecSql.from("SELECT * FROM `member`");
-			List<Map<String, Object>> memberRows = DBUtil.selectRows(conn, sql);
+			SecSql sqlcheck = SecSql.from("SELECT COUNT(*)");
+			sqlcheck.append(" FROM `member` WHERE loginId = ?;", loginId);
+			boolean isJoinableLoginId = DBUtil.selectRowIntValue(conn, sqlcheck) == 0;
 			
-			for(Map member : memberRows) {
-				if(member.get("loginid").equals(loginId)) {
-					response.getWriter()
-					.append("<script>alert('중복된 아이디입니다.'); location.replace('joinForm');</script>");
-				}
+			if(!isJoinableLoginId) {
+				response.getWriter()
+				.append("<script>alert('이미 사용중인 아이디입니다.'); location.replace('joinForm');</script>");
 			}
 			
-			sql.from("INSERT INTO `member`");
+			SecSql sql = SecSql.from("INSERT INTO `member`");
 	        sql.append("SET regDate = NOW(),");
-	        sql.append("updateDate = NOW(),");
 	        sql.append("loginID = ?,", loginId);
 	        sql.append("loginPw = ?,", loginPw);
 	        sql.append("`name` = ?;", name);
