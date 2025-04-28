@@ -4,9 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
-// List<Map<String, Object>> memberRows = (List<Map<String, Object>>) request.getAttribute("memberRows");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +25,6 @@
        if(!check(re, loginPw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
            return false;
        }
-       
-//        for(Map member : memberRows){
-//       	  if(member.get(loginId).equals((String)join.loginId.value)){
-//       	  	alert("중복된 아이디이빈다.");
-//       	    join.loginId.value = "";
-//       	    join.loginId.focus();
-//       	   return false;
-//       	  }
-//        }
 
        if(join.loginPw.value != join.checkLoginPw.value) {
            alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
