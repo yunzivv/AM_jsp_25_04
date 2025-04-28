@@ -51,6 +51,8 @@ public class ArticleModifyServlet extends HttpServlet {
 	        sql.append("`body` = ?,", body);
 	        sql.append("updateDate = NOW()");
 	        sql.append("WHERE id = ?;", id);
+	        
+	        DBUtil.update(conn, sql);
 
 			response.getWriter()
 					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('list');</script>", id));

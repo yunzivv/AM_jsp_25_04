@@ -51,6 +51,7 @@ public class ArticleModifyFormServlet extends HttpServlet {
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 
 			request.setAttribute("articleRow", articleRow);
+			request.setAttribute("id", id);
 
 			request.getRequestDispatcher("/jsp/article/update.jsp").forward(request, response);
 
