@@ -6,7 +6,6 @@
 <%
 
 Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
-String regDate = (String)articleRow.get("regDate");
 %>
 
 <!-- ctrl shift c -->
@@ -36,7 +35,7 @@ a:hover {
 	
 		<div class="header">
 			<div class="title"><%=articleRow.get("title") %></div>
-			<div class="articleInfo"><%=regDate.substring(0,11) %></div>
+			<div class="articleInfo"><%=articleRow.get("regDate").toString().substring(0, 10) %></div>
 		</div>
 		<hr style="color:gray">
 		<section class="body">
@@ -58,11 +57,11 @@ a:hover {
 	
 	<h3>
 	regDate : 
-	<%=articleRow.get("regDate") %>
+	<%= articleRow.get("regDate").toString().substring(0, 10) %>
 	</h3>
 	<h3>
 	updateDate : 
-	<%=articleRow.get("updateDate") %>
+	<%=articleRow.get("updateDate").toString().substring(0, 10) %>
 	</h3>
 	<h3>
 	writer : 

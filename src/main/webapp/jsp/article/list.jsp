@@ -7,7 +7,6 @@
 List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
 
 int cPage = (int) request.getAttribute("page");
-int totalCnt = (int) request.getAttribute("totalCnt");
 int totalPage = (int) request.getAttribute("totalPage");
 %>
 <!DOCTYPE html>
@@ -65,7 +64,7 @@ table>thead>tr>th, table>tbody>tr>td {
 			%>
 			<tr style="text-align: center;">
 				<td><%=articleRow.get("id")%>번</td>
-				<td><%=articleRow.get("regDate")%></td>
+				<td><%=articleRow.get("regDate").toString().substring(0, 10) %></td>
 				<td><a href="detail?id=<%=articleRow.get("id")%>"><%=articleRow.get("title")%></a></td>
 				<td><%=articleRow.get("body")%></td>
 				<td><a

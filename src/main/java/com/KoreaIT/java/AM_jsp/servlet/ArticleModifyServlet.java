@@ -55,7 +55,7 @@ public class ArticleModifyServlet extends HttpServlet {
 	        DBUtil.update(conn, sql);
 
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('list');</script>", id));
+					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('detail?id=%d');</script>", id, id));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

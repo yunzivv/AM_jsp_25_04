@@ -45,16 +45,16 @@ public class MemberDoJoinServlet extends HttpServlet {
 			String name = request.getParameter("name");
 
 
-			SecSql sqlcheck = SecSql.from("SELECT COUNT(*)");
-			sqlcheck.append(" FROM `member` WHERE loginId = ?;", loginId);
-			boolean isJoinableLoginId = DBUtil.selectRowIntValue(conn, sqlcheck) == 0;
+			SecSql sql = SecSql.from("SELECT COUNT(*)");
+			sql.append(" FROM `member` WHERE loginId = ?;", loginId);
+			boolean isJoinableLoginId = DBUtil.selectRowIntValue(conn, sql) == 0;
 			
 			if(!isJoinableLoginId) {
 				response.getWriter()
 				.append("<script>alert('이미 사용중인 아이디입니다.'); location.replace('joinForm');</script>");
 			}
 			
-			SecSql sql = SecSql.from("INSERT INTO `member`");
+			sql = SecSql.from("INSERT INTO `member`");
 	        sql.append("SET regDate = NOW(),");
 	        sql.append("loginID = ?,", loginId);
 	        sql.append("loginPw = ?,", loginPw);
