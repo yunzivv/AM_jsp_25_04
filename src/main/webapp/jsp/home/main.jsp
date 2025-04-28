@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<style>
+body {
+	text-align : center;
+}
+</style>
+<title>Article Manager</title>
 </head>
 <body>
 	<h1>메인 페이지</h1>

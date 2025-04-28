@@ -16,20 +16,39 @@ int totalPage = (int) request.getAttribute("totalPage");
 <meta charset="UTF-8">
 <title>게시글 목록</title>
 <style>
+body {
+	text-align: center;
+}
+
+table {
+	margin: 10px auto;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+	margin: 2px;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
 table>thead>tr>th, table>tbody>tr>td {
-	padding: 5px;
+	padding: 10px;
 }
 </style>
 </head>
 <body>
 	<h2>게시글 목록</h2>
 
-	<a href="../home/main">메인으로 이동</a>
+	<button>
+		<a href="../home/main">메인으로 이동</a>
+	</button>
 	<button>
 		<a href="writeForm">새 글 작성</a>
 	</button>
 
-	<table style="border-collapse: collapse; border-color: green;"
+	<table style="border-collapse: collapse;"
 		border="1px">
 		<thead>
 			<tr>

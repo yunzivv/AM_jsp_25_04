@@ -32,7 +32,6 @@ public class ArticleWriteServlet extends HttpServlet {
 
 		}
 
-		// DB 이름
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
@@ -47,7 +46,7 @@ public class ArticleWriteServlet extends HttpServlet {
 			SecSql sql = SecSql.from("INSERT INTO article");
 	        sql.append("SET regDate = NOW(),");
 	        sql.append("updateDate = NOW(),");
-	        sql.append("loginId = 1,"); // memberID -> loginId
+	        sql.append("loginId = 1,");
 	        sql.append("title = ?,", title);
 	        sql.append("`body` = ?;", body);
 
@@ -73,6 +72,8 @@ public class ArticleWriteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+		
+		
 	}
 
 }

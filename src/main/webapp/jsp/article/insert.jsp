@@ -11,12 +11,17 @@
 <meta charset="UTF-8">
 <title>Write Article</title>
 <style>
-
+form {
+	max-width: 800px; 
+	margin: auto;
+	background-color: blue;
+	
+}
 section {
 	text-align: center;
 }
 input, textarea {
-	width: 700px;
+	width: 100%;
 }
 </style>
 </head>
@@ -28,16 +33,15 @@ input, textarea {
 
 
 
-	<form action="doWrite" method="GET">
+	<form action="doWrite" method="POST">
 		
 		<div style="display:flex; flex-direction:column; justify-content: center;">
-  			<section><input type="text" name="title" placeholder="제목을 입력하세요"></section>
+  			<section><input type="text" name="title" placeholder="제목을 입력하세요" /></section>
   			<br>
   			<section><textarea  style="height:400px;" name="body" placeholder="내용을 입력하세요"></textarea></section>
   			<br>
-  			<section><input type="submit" value="작성하기"></section>
  		</div>
-  		
+  		<button type="submit">작성하기</button>
   		
 	</form>
 

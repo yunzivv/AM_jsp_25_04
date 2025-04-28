@@ -39,7 +39,6 @@ public class ArticleListServlet extends HttpServlet {
 	        response.getWriter().append("드라이버 로딩실패");
 	    }
 
-		// DB 이름
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
