@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doModify")
-public class ArticleModifyServlet extends HttpServlet {
+@WebServlet("/member/doJoin")
+public class MemberDoJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,20 +42,22 @@ public class ArticleModifyServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
-			String title = request.getParameter("title");
-			String body = request.getParameter("body");
-			int id = Integer.parseInt(request.getParameter("id"));
+			String loginId = request.getParameter("loginId");
+			String loginPw = request.getParameter("loginPw");
+			String name = request.getParameter("name");
 
-			SecSql sql = SecSql.from("UPDATE article");
-	        sql.append("SET title = ?,", title);
-	        sql.append("`body` = ?,", body);
-	        sql.append("updateDate = NOW()");
-	        sql.append("WHERE id = ?;", id);
+
+	        SecSql sql = SecSql.from("INSERT INTO `member`");
+	        sql.append("SET regDate = NOW(),");
+	        sql.append("SET updateDate = NOW(),");
+	        sql.append("SET loginID = ?,", loginId);
+	        sql.append("SET loginPw = ?,", loginPw);
+	        sql.append("SET `name` = ?;", name);
 	        
-	        DBUtil.update(conn, sql);
+	        DBUtil.insert(conn, sql);
 
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('list');</script>", id));
+					.append("<script>alert('회원가입이 완료되었습니다.'); location.replace('../home/main');</script>");
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

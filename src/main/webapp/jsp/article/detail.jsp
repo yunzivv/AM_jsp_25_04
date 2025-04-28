@@ -1,11 +1,12 @@
 <%@page import="java.util.List"%>
-<%@page import="java.util.Map"%>
+<%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 
 Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
+String regDate = (String)articleRow.get("regDate");
 %>
 
 <!-- ctrl shift c -->
@@ -13,10 +14,35 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+body {
+	text-align: center;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+</style>
 <title>Detail Article</title>
 </head>
 <body>
 
+	<div class="container" style="border:gray solid 1px; border-radius: 30px;">
+	
+		<div class="header">
+			<div class="title"><%=articleRow.get("title") %></div>
+			<div class="articleInfo"><%=regDate.substring(0,11) %></div>
+		</div>
+		<hr style="color:gray">
+		<section class="body">
+		
+		</section>
+	</div>
 	<h2>
 		Article
 		<%=articleRow.get("id") %>
@@ -40,7 +66,7 @@ Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("art
 	</h3>
 	<h3>
 	writer : 
-	<%=articleRow.get("memberId") %>
+	<%=articleRow.get("loginId") %>
 	</h3>
 	<h3>
 	title : 

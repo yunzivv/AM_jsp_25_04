@@ -32,7 +32,7 @@ input, textarea {
 		<%=id %>
 		Modify
 	</h2>
-	<form action="doModify" method="GET">
+	<form action="doModify" method="POST">
 	<div style="display:flex; flex-direction:column; justify-content: center;">
 		<input type="hidden" name="id" value="<%=id%>">
   		<section><input type="text" name="title" value="<%=articleRow.get("title") %>"></section>

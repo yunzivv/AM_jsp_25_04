@@ -16,21 +16,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doModify")
-public class ArticleModifyServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/member/joinForm")
+public class MemberJoinFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 
+		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();
 
 		}
+
 
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
@@ -40,22 +41,16 @@ public class ArticleModifyServlet extends HttpServlet {
 
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			response.getWriter().append("연결 성공!");
 
-			String title = request.getParameter("title");
-			String body = request.getParameter("body");
-			int id = Integer.parseInt(request.getParameter("id"));
+			SecSql sql = SecSql.from("SELECT * FROM `member`");
+			sql.append("ORDER BY id DESC;");
+			
+			List<Map<String, Object>> memberRows = DBUtil.selectRows(conn, sql);
+			
+			request.setAttribute("memberRows", memberRows);
 
-			SecSql sql = SecSql.from("UPDATE article");
-	        sql.append("SET title = ?,", title);
-	        sql.append("`body` = ?,", body);
-	        sql.append("updateDate = NOW()");
-	        sql.append("WHERE id = ?;", id);
-	        
-	        DBUtil.update(conn, sql);
-
-			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('list');</script>", id));
+			request.getRequestDispatcher("/jsp/member/join.jsp").forward(request, response);
+		
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
@@ -69,11 +64,6 @@ public class ArticleModifyServlet extends HttpServlet {
 			}
 		}
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

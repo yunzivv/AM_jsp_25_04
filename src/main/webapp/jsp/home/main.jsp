@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <style>
-body {
+body, li, ul {
 	text-align : center;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
 }
 </style>
 <title>Article Manager</title>
@@ -15,7 +21,9 @@ body {
 	<h1>메인 페이지</h1>
 
 	<ul>
-		<li><a href="../article/list">리스트로 이동</a></li>
+		<li>
+		<button><a href="../article/list">리스트로 이동</a></button>
+		</li>
 	</ul>
 
 </body>
