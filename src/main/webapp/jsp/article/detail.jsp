@@ -47,7 +47,7 @@ span {
 				
 				<div class="writeInfo" style="color: gray;">
 					<span> 작성 일자 : <%=articleRow.get("regDate").toString().substring(0, 10)%></span>
-					<span> 작성자 : <%=articleRow.get("loginId")%></span>
+					<span> 작성자 : <%=articleRow.get("name")%></span>
 				</div>
 				
 				<div class="articleBtn">
