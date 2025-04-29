@@ -14,7 +14,6 @@
 form {
 	max-width: 800px; 
 	margin: auto;
-	background-color: blue;
 	
 }
 section {

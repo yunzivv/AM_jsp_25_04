@@ -5,6 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%
 Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
+int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+boolean writerCheck = (Integer)articleRow.get("loginId") == loginedMemberId;
 %>
 
 <!-- ctrl shift c -->
@@ -49,7 +51,7 @@ span {
 					<span> 작성 일자 : <%=articleRow.get("regDate").toString().substring(0, 10)%></span>
 					<span> 작성자 : <%=articleRow.get("name")%></span>
 				</div>
-				
+				<%if(writerCheck) { %>
 				<div class="articleBtn">
 					<button>
 						<a href="modifyForm?id=<%=articleRow.get("id")%>">modify</a>
@@ -59,7 +61,7 @@ span {
 							href="doDelete?id=<%=articleRow.get("id")%>">delete</a>
 					</button>
 				</div>
-				
+				<%} %>
 			</div>
 		</div>
 		<hr style="color: gray;"/>
