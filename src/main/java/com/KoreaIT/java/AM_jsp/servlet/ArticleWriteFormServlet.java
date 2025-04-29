@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/article/writeForm")
 public class ArticleWriteFormServlet extends HttpServlet {
@@ -43,6 +44,13 @@ public class ArticleWriteFormServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("loginedMember") == null) {
+				response.getWriter()
+				.append("<script>alert('로그인 후 사용 가능합니다.'); location.replace('../member/loginForm');</script>");
+				return;
+			}
 			
 			request.getRequestDispatcher("/jsp/article/insert.jsp").forward(request, response);
 			

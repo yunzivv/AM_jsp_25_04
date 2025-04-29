@@ -51,9 +51,7 @@ public class ArticleDetailServlet extends HttpServlet {
 			sql.append("ON A.loginId = M.id");
 			sql.append("WHERE A.id = ?;", id);
 			
-			System.out.println(1);
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-			System.out.println(articleRow.get("name"));
 
 			request.setAttribute("articleRow", articleRow);
 

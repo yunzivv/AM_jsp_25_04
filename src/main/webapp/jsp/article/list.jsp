@@ -60,7 +60,7 @@ table>thead>tr>th, table>tbody>tr>td {
 		<div style="display:flex;">
 			<button><a href="../home/main">메인으로 이동</a></button>
 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div>
-			<button><a href="<%=isLogined ? "writeForm" : "../member/loginForm" %>">새 글 작성</a></button>
+			<button><a href="writeForm" >새 글 작성</a></button>
 		</div>
 	</div>
 
@@ -76,7 +76,7 @@ table>thead>tr>th, table>tbody>tr>td {
 				<th>번호</th>
 				<th>날짜</th>
 				<th>제목</th>
-				<th>내용</th>
+<!-- 				<th>내용</th> -->
 				<th>작성자</th>
 			</tr>
 		</thead>
@@ -88,7 +88,7 @@ table>thead>tr>th, table>tbody>tr>td {
 				<td><%=articleRow.get("id")%>번</td>
 				<td><%=articleRow.get("regDate").toString().substring(0, 10) %></td>
 				<td><a href="detail?id=<%=articleRow.get("id")%>"><%=articleRow.get("title")%></a></td>
-				<td><%=articleRow.get("body")%></td>
+<%-- 				<td><%=articleRow.get("body")%></td> --%>
 				<td><%=articleRow.get("name")%></td>
 			</tr>
 			<%
