@@ -38,6 +38,7 @@ public class MemberController {
 	
 	public void join() throws ServletException, IOException {
 		
+		System.out.println(isLogined());
 		if(isLogined()) {
 			response.getWriter()
 			.append("<script>alert('로그아웃 후 가능'); location.replace('..home/main');</script>");
@@ -80,7 +81,7 @@ public class MemberController {
 		
 		if(isLogined()) {
 			response.getWriter()
-			.append("<script>alert('로그아웃 후 가능'); location.replace('..home/main');</script>");
+			.append("<script>alert('로그아웃 후 가능'); location.replace('../home/main');</script>");
 			return;
 		}
 		
@@ -92,8 +93,7 @@ public class MemberController {
 
 		String loginId = request.getParameter("loginId");
 		String loginPw = request.getParameter("loginPw");
-
-
+		
 		SecSql sql = SecSql.from("SELECT *");
 		sql.append("FROM `member` WHERE loginId = ?;", loginId);
 		
@@ -104,6 +104,7 @@ public class MemberController {
 		if(checkPw == null || !checkPw.equals(loginPw)) {
 			response.getWriter()
 			.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('login');</script>");
+			return;
 		}
 		
 		HttpSession session = request.getSession();

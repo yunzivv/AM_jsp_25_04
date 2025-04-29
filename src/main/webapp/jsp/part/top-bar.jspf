@@ -35,7 +35,7 @@
 	if (isLogined) {
 	%>
 	<button>
-		<a href="../member/logout">로그아웃</a>
+		<a href="../member/doLogout">로그아웃</a>
 	</button>
 	<%
 	}

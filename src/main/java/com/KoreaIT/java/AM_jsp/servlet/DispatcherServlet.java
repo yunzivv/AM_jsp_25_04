@@ -106,7 +106,7 @@ public class DispatcherServlet extends HttpServlet {
 				case "doModify":
 					articleController.doModify();
 					break;
-				case "delete":
+				case "doDelete":
 					articleController.doDelete();
 					break;
 
@@ -126,7 +126,7 @@ public class DispatcherServlet extends HttpServlet {
 				case "login":
 					memberController.login();
 					break;
-				case "Dologin":
+				case "doLogin":
 					memberController.doLogin();
 					break;
 				case "doLogout":

@@ -7,6 +7,7 @@
 Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
 int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 boolean writerCheck = (Integer)articleRow.get("loginId") == loginedMemberId;
+boolean isLogined = (boolean) request.getAttribute("isLogined");
 %>
 
 <!-- ctrl shift c -->
@@ -37,7 +38,7 @@ span {
 <title>Article <%=articleRow.get("id")%></title>
 </head>
 <body>
-
+	<%@ include file="../part/top-bar.jspf" %>
 	<div class="container"
 		style="border: gray solid 1px; border-radius: 30px; padding: 20px 30px;">
 
@@ -54,7 +55,7 @@ span {
 				<%if(writerCheck) { %>
 				<div class="articleBtn">
 					<button>
-						<a href="modifyForm?id=<%=articleRow.get("id")%>">modify</a>
+						<a href="modify?id=<%=articleRow.get("id")%>">modify</a>
 					</button>
 					<button>
 						<a onClick="if ( confirm('정말 삭제할거야? ㅠㅠ😢?') == false ) { return false; })"
