@@ -45,8 +45,9 @@ public class MemberDoJoinServlet extends HttpServlet {
 			String name = request.getParameter("name");
 
 
-			SecSql sql = SecSql.from("SELECT COUNT(*)");
+			SecSql sql = SecSql.from("SELECT *");
 			sql.append(" FROM `member` WHERE loginId = ?;", loginId);
+			
 			boolean isJoinableLoginId = DBUtil.selectRowIntValue(conn, sql) == 0;
 			
 			if(!isJoinableLoginId) {

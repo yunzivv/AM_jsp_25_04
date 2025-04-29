@@ -27,6 +27,9 @@ a {
 		<li>
 		<button><a href="../member/joinForm">회원가입</a></button>
 		</li>
+		<li>
+		<button><a href="../member/loginForm">로그인</a></button>
+		</li>
 	</ul>
 
 </body>

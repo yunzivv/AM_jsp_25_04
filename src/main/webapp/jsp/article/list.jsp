@@ -38,14 +38,14 @@ table>thead>tr>th, table>tbody>tr>td {
 </style>
 </head>
 <body>
-	<h2>게시글 목록</h2>
+	<div class="header" style="display:flex; justify-content: center; flex-direction:column; max-width: 1000px; margin: 20px auto;">
+		<div class="title"><h2>게시글 목록</h2></div>
+		<button><a href="../home/main">메인으로 이동</a></button>
+		<button><a href="writeForm">새 글 작성</a></button>
+		<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px;"></div>
+	</div>
 
-	<button>
-		<a href="../home/main">메인으로 이동</a>
-	</button>
-	<button>
-		<a href="writeForm">새 글 작성</a>
-	</button>
+	
 
 	<table style="border-collapse: collapse;"
 		border="1px">

@@ -16,14 +16,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/detail")
-public class ArticleDetailServlet extends HttpServlet {
+@WebServlet("/member/doLogin")
+public class MemberDoLoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 
-		// DB 연결
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -32,7 +32,6 @@ public class ArticleDetailServlet extends HttpServlet {
 
 		}
 
-		// DB 이름
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
@@ -41,19 +40,24 @@ public class ArticleDetailServlet extends HttpServlet {
 
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			response.getWriter().append("연결 성공!");
+			String loginId = request.getParameter("loginId");
+			String loginPw = request.getParameter("loginPw");
 
-			int id = Integer.parseInt(request.getParameter("id"));
 
-			SecSql sql = SecSql.from("SELECT *");
-			sql.append("FROM article");
-			sql.append("WHERE id = ?;", id);
+			SecSql sql = SecSql.from("SELECT loginPw");
+			sql.append("FROM `member` WHERE loginId = ?;", loginId);
+			
+			String checkPw = DBUtil.selectRowStringValue(conn, sql);
+			
+			if(checkPw == null || !checkPw.equals(loginPw)) {
+				response.getWriter()
+				.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('loginForm');</script>");
+			}
+			
+			
 
-			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-
-			request.setAttribute("articleRow", articleRow);
-
-			request.getRequestDispatcher("/jsp/article/detail.jsp").forward(request, response);
+			response.getWriter()
+					.append("<script>alert('로그인이 완료되었습니다.'); location.replace('../home/main');</script>");
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
@@ -67,6 +71,11 @@ public class ArticleDetailServlet extends HttpServlet {
 			}
 		}
 
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
