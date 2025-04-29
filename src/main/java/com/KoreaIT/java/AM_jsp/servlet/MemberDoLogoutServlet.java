@@ -17,13 +17,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/member/doLogin")
-public class MemberDoLoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/member/logout")
+public class MemberDoLogoutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -33,6 +32,7 @@ public class MemberDoLoginServlet extends HttpServlet {
 
 		}
 
+
 		String url = "jdbc:mysql://127.0.0.1:3306/AM_jsp_25_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "";
@@ -41,28 +41,11 @@ public class MemberDoLoginServlet extends HttpServlet {
 
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			String loginId = request.getParameter("loginId");
-			String loginPw = request.getParameter("loginPw");
 
-
-			SecSql sql = SecSql.from("SELECT *");
-			sql.append("FROM `member` WHERE loginId = ?;", loginId);
-			
-			Map memberRow = DBUtil.selectRow(conn, sql);
-			String checkPw = (String)memberRow.get("loginPw");
-			String name = (String)memberRow.get("name");
-			
-			if(checkPw == null || !checkPw.equals(loginPw)) {
-				response.getWriter()
-				.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('loginForm');</script>");
-			}
-			
 			HttpSession session = request.getSession();
-			session.setAttribute("loginedMember", memberRow);
-			session.setAttribute("loginedMemberLoginId", memberRow.get("loginId"));
+			session.removeAttribute("loginedMember");
+			session.removeAttribute("loginedMemberLoginId");
 			
-			response.getWriter()
-					.append(String.format("<script>alert('%s님 반갑습니다.'); location.replace('../home/main');</script>", name));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
@@ -76,11 +59,6 @@ public class MemberDoLoginServlet extends HttpServlet {
 			}
 		}
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

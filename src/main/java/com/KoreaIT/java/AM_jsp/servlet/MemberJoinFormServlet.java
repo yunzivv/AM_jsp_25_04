@@ -25,7 +25,7 @@ public class MemberJoinFormServlet extends HttpServlet {
 
 		// DB 연결
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); // cj. 추가
+			Class.forName("com.mysql.jdbc.Driver"); 
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 x");
 			e.printStackTrace();

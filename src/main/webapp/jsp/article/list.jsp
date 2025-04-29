@@ -22,6 +22,7 @@ body {
 table {
 	margin: 10px auto;
 }
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -29,24 +30,43 @@ a {
 }
 
 a:hover {
-	font-weight: bold;
 	text-decoration: underline;
 }
+
 table>thead>tr>th, table>tbody>tr>td {
 	padding: 10px;
+}
+
+.page {
+	font-size: 1rem;
+}
+
+.page > a {
+	color: gray;
+	text-decoration: none;
+}
+
+.page>a.cPage {
+	color: black;
+	font-weight: bold;
 }
 </style>
 </head>
 <body>
 	<div class="header" style="display:flex; justify-content: center; flex-direction:column; max-width: 1000px; margin: 20px auto;">
 		<div class="title"><h2>게시글 목록</h2></div>
-		<button><a href="../home/main">메인으로 이동</a></button>
-		<button><a href="writeForm">새 글 작성</a></button>
-		<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px;"></div>
+		<div style="display:flex;">
+			<button><a href="../home/main">메인으로 이동</a></button>
+			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div>
+			<button><a href="writeForm">새 글 작성</a></button>
+		</div>
 	</div>
 
 	
-
+	<div class="container">
+	
+	</div>
+	
 	<table style="border-collapse: collapse;"
 		border="1px">
 		<thead>
@@ -74,22 +94,6 @@ table>thead>tr>th, table>tbody>tr>td {
 			%>
 		</tbody>
 	</table>
-
-	<style type="text/css">
-	.page {
-		font-size: 1rem;
-	}
-
-	.page > a {
-		color: gray;
-		text-decoration: none;
-	}
-
-.page>a.cPage {
-	color: black;
-	font-weight: bold;
-}
-</style>
 
 	<div class="page">
 		<%

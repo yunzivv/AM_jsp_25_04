@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+boolean isLogined;  
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +24,14 @@ a {
 <body>
 	<h1>메인 페이지</h1>
 
-	<ul>
-		<li>
-		<button><a href="../article/list">리스트로 이동</a></button>
-		</li>
-		<li>
+	<div style="text-align:center;">
+		<button><a href="../article/list">리스트</a></button>
+<%-- 		<%if(isLogined) %> --%>
 		<button><a href="../member/joinForm">회원가입</a></button>
-		</li>
-		<li>
 		<button><a href="../member/loginForm">로그인</a></button>
-		</li>
-	</ul>
-
+		<button><a href="../member/logout">로그아웃</a></button>
+		<button><a href="../member/logout">마이페이지</a></button>	
+	</div>
+	
 </body>
 </html>
