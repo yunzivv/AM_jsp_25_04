@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,6 +51,7 @@ public class ArticleListServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 			
+			// pagenation
 			int page = 1;
 			
 			if(request.getParameter("page") != null && request.getParameter("page").length() != 0) {
@@ -58,6 +61,7 @@ public class ArticleListServlet extends HttpServlet {
 			int itemsInAPage = 10;
 			int limitFrom = (page - 1) * itemsInAPage;
 			
+			// query
 			SecSql sql = SecSql.from("SELECT COUNT(*)");
 			sql.append("FROM article;");
 
@@ -71,13 +75,30 @@ public class ArticleListServlet extends HttpServlet {
 			sql.append("ORDER BY A.id DESC");
 			sql.append("LIMIT ?, ?;", limitFrom, itemsInAPage);
 
+			// article 저장
 			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
+			
+			// loginedMember
+			HttpSession session = request.getSession();
+			
+			boolean isLogined = false;
+			Map<String, Object> loginedMember = null;
+			int loginedMemberId = -1;
+
+			if (session.getAttribute("loginedMemberLoginId") != null) {
+				isLogined = true;
+				loginedMember = (Map<String, Object>) session.getAttribute("loginedMember");
+				loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			}
 			
 			request.setAttribute("page", page);
 			request.setAttribute("articleRows", articleRows);
 			request.setAttribute("totalCnt", totalCnt);
 			request.setAttribute("totalPage", totalPage);
-
+			
+			request.setAttribute("isLogined", isLogined);
+//			request.setAttribute("loginedMember", loginedMember);
+//			request.setAttribute("loginedMemberId", loginedMemberId);
 
 			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	

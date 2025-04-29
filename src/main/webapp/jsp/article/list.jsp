@@ -4,7 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+boolean isLogined = (boolean) request.getAttribute("isLogined");
 List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
+Map<String, Object> loginedMember = (Map<String, Object>) request.getAttribute("loginedMember");
 
 int cPage = (int) request.getAttribute("page");
 int totalPage = (int) request.getAttribute("totalPage");
@@ -58,7 +60,7 @@ table>thead>tr>th, table>tbody>tr>td {
 		<div style="display:flex;">
 			<button><a href="../home/main">메인으로 이동</a></button>
 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div>
-			<button><a href="writeForm">새 글 작성</a></button>
+			<button><a href="<%=isLogined ? "writeForm" : "../member/loginForm" %>">새 글 작성</a></button>
 		</div>
 	</div>
 
