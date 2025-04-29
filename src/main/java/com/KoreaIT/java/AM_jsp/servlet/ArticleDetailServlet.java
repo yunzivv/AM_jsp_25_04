@@ -44,6 +44,7 @@ public class ArticleDetailServlet extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, password);
 			response.getWriter().append("연결 성공!");
 
+			// article 저장
 			int id = Integer.parseInt(request.getParameter("id"));
 
 			SecSql sql = SecSql.from("SELECT *");
@@ -54,6 +55,7 @@ public class ArticleDetailServlet extends HttpServlet {
 			
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 			
+			// logined member 저장
 			HttpSession session = request.getSession();
 			
 			Map<String, Object> loginedMember = null;
@@ -63,6 +65,7 @@ public class ArticleDetailServlet extends HttpServlet {
 				loginedMember = (Map<String, Object>) session.getAttribute("loginedMember");
 				loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			}
+			
 			
 			request.setAttribute("articleRow", articleRow);
 			request.setAttribute("loginedMemberId", loginedMemberId);

@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.KoreaIT.java.AM_jsp.controller.ArticleController;
+import com.KoreaIT.java.AM_jsp.controller.HomeController;
+import com.KoreaIT.java.AM_jsp.controller.MemberController;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
 
@@ -60,40 +62,78 @@ public class DispatcherServlet extends HttpServlet {
 				loginedMemberLoginId = (String) session.getAttribute("loginedMemberLoginId");
 				loginedMember = (Map<String, Object>) session.getAttribute("loginedMember");
 			}
-			
+
 			request.setAttribute("isLogined", isLogined);
 			request.setAttribute("loginedMemberLoginId", loginedMemberLoginId);
 			request.setAttribute("loginedMember", loginedMember);
-			
+
 			String requestURI = request.getRequestURI();
 			String[] reqURIBits = requestURI.split("/");
-			
-			if(reqURIBits.length < 5) {
-				response.getWriter()
-				.append(String.format("<script>alert('올바르지 않은 요청입니다.'); location.replace('home/main');</script>"));
-				return ;
+
+			if (reqURIBits.length < 5) {
+				response.getWriter().append(
+						String.format("<script>alert('올바르지 않은 요청입니다.'); location.replace('home/main');</script>"));
+				return;
 			}
-			
+
 			String controllerName = reqURIBits[3];
 			String actionMethodName = reqURIBits[4];
-			
-			if(controllerName.equals("article")) {
+			if (controllerName.equals("home")) {
+				
+				HomeController homeController = new HomeController(request, response, conn);
+				homeController.showMain();
+				
+			} else if (controllerName.equals("article")) {
+
 				ArticleController articleController = new ArticleController(request, response, conn);
-				
-				if(actionMethodName.equals("list")) {
+
+				switch (actionMethodName) {
+				case "list":
 					articleController.showList();
-					
-				}else if(actionMethodName.equals("write")) {
-					
+					break;
+				case "detail":
+					articleController.showDetail();
+					break;
+				case "write":
+					articleController.write();
+					break;
+				case "doWrite":
+					articleController.doWrite();
+					break;
+				case "modify":
+					articleController.modify();
+					break;
+				case "doModify":
+					articleController.doModify();
+					break;
+				case "delete":
+					articleController.doDelete();
+					break;
+
 				}
-				
+
 			} else if (controllerName.equals("member")) {
-				
-				
+
+				MemberController memberController = new MemberController(request, response, conn);
+
+				switch (actionMethodName) {
+				case "join":
+					memberController.join();
+					break;
+				case "doJoin":
+					memberController.doJoin();
+					break;
+				case "login":
+					memberController.login();
+					break;
+				case "Dologin":
+					memberController.doLogin();
+					break;
+				case "doLogout":
+					memberController.doLogout();
+					break;
+				}
 			}
-			
-			
-			
 
 		} catch (SQLException e) {
 			System.out.println("에러 : " + e);

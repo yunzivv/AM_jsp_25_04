@@ -64,7 +64,7 @@ table>thead>tr>th, table>tbody>tr>td {
 				<input type="text" place-holder="search keyword" style="height:30px; margin: 0 10px; width: 100%;"/>
 			</form>
 <!-- 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div> -->
-			<button><a href="writeForm" >새 글 작성</a></button>
+			<button><a href="write" >새 글 작성</a></button>
 		</div>
 	</div>
 

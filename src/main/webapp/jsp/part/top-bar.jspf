@@ -16,16 +16,16 @@
 <body>
 
 	<button>
-		<a href="<%=isLogined ? "../member/mypage" : "../member/loginForm"%>">마이페이지</a>
+		<a href="<%=isLogined ? "../member/mypage" : "../member/login"%>">마이페이지</a>
 	</button>
 	<%
 	if (!isLogined) {
 	%>
 	<button>
-		<a href="../member/joinForm">회원가입</a>
+		<a href="../member/join">회원가입</a>
 	</button>
 	<button>
-		<a href="../member/loginForm">로그인</a>
+		<a href="../member/login">로그인</a>
 	</button>
 	<%
 	}
