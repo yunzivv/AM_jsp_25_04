@@ -55,11 +55,15 @@ table>thead>tr>th, table>tbody>tr>td {
 </style>
 </head>
 <body>
-	<div class="header" style="display:flex; justify-content: center; flex-direction:column; max-width: 1000px; margin: 20px auto;">
+	<div class="header" style="max-width: 1000px; margin:auto; padding:20px;">
 		<div class="title"><h2>게시글 목록</h2></div>
-		<div style="display:flex;">
+		<%@ include file="../part/top-bar.jspf" %>
+		<div style="display:flex; background-color: red;">
 			<button><a href="../home/main">메인으로 이동</a></button>
-			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div>
+			<form action="" style="flex-grow:1;" >
+				<input type="text" place-holder="search keyword" style="height:30px; margin: 0 10px; width: 100%;"/>
+			</form>
+<!-- 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div> -->
 			<button><a href="writeForm" >새 글 작성</a></button>
 		</div>
 	</div>

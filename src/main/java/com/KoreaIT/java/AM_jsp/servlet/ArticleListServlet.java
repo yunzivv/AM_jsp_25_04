@@ -100,7 +100,7 @@ public class ArticleListServlet extends HttpServlet {
 //			request.setAttribute("loginedMember", loginedMember);
 //			request.setAttribute("loginedMemberId", loginedMemberId);
 
-			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
+//			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 	
         } catch (SQLException e) {
             System.out.println("에러 : " + e);
