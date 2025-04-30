@@ -73,11 +73,6 @@ public class ArticleController {
 
 		List<Article> articles = articleService.getForPrintArticles(limitFrom, itemsInAPage);
 
-		// loginedMember
-//		boolean isLogined = isLogined();
-//		Member loginedMember = getLoginedMember();
-//		int loginedMemberId = getLoginedMemberId();
-
 		request.setAttribute("page", page);
 		request.setAttribute("articles", articles);
 		request.setAttribute("totalCnt", totalCnt);
@@ -93,13 +88,6 @@ public class ArticleController {
 
 	public void showDetail() throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-
-//		Article article = articleService.getArticle(id);
-//
-//		// loginedMember
-//		boolean isLogined = isLogined();
-//		Member loginedMember = getLoginedMember();		
-//		int loginedMemberId = getLoginedMemberId();
 
 		request.setAttribute("article", articleService.getArticle(id));
 		

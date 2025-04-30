@@ -20,6 +20,7 @@ public class Article {
 		this.loginId = (int) articleMap.get("loginId");
 		this.title = (String) articleMap.get("title");
 		this.body = (String) articleMap.get("body");
+		this.writer = (String) articleMap.get("name");
 	}
 
 	public Article(int id, LocalDateTime regDate, LocalDateTime updateDate, int loginId, String title, String body) {

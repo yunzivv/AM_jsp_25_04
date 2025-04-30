@@ -7,7 +7,6 @@
 <%
 Article article = (Article) request.getAttribute("article");
 int id = (int) request.getAttribute("id");
-request.setAttribute("id", id);
 %>
 
 <!-- ctrl shift c -->
