@@ -1,15 +1,17 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
+<%@page import="com.KoreaIT.java.AM_jsp.dto.Article"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 boolean isLogined = (boolean) request.getAttribute("isLogined");
-List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
+List<Article> articles = (List<Article>) request.getAttribute("articles");
 Map<String, Object> loginedMember = (Map<String, Object>) request.getAttribute("loginedMember");
 
 int cPage = (int) request.getAttribute("page");
 int totalPage = (int) request.getAttribute("totalPage");
+int totalCnt = (int) request.getAttribute("totalCnt");
 %>
 <!DOCTYPE html>
 <html>
@@ -70,7 +72,7 @@ table>thead>tr>th, table>tbody>tr>td {
 
 	
 	<div class="container">
-	
+	총 게시물 : <%=totalCnt %>개
 	</div>
 	
 	<table style="border-collapse: collapse;"
@@ -86,14 +88,13 @@ table>thead>tr>th, table>tbody>tr>td {
 		</thead>
 		<tbody>
 			<%
-			for (Map<String, Object> articleRow : articleRows) {
+			for (Article article : articles) {
 			%>
 			<tr style="text-align: center;">
-				<td><%=articleRow.get("id")%>번</td>
-				<td><%=articleRow.get("regDate").toString().substring(0, 10) %></td>
-				<td><a href="detail?id=<%=articleRow.get("id")%>"><%=articleRow.get("title")%></a></td>
-<%-- 				<td><%=articleRow.get("body")%></td> --%>
-				<td><%=articleRow.get("name")%></td>
+				<td><%=article.getId()%>번</td>
+				<td><%=article.getRegDate().toString().substring(0,10) %></td>
+				<td><a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a></td>
+				<td><%=article.getRegDate()%></td>
 			</tr>
 			<%
 			}

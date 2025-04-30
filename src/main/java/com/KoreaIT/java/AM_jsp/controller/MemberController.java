@@ -41,7 +41,7 @@ public class MemberController {
 		System.out.println(isLogined());
 		if(isLogined()) {
 			response.getWriter()
-			.append("<script>alert('로그아웃 후 가능'); location.replace('..home/main');</script>");
+			.append("<script>alert('로그아웃 후 가능'); location.replace('../home/main');</script>");
 			return;
 		}
 		
@@ -131,6 +131,18 @@ public class MemberController {
 		session.removeAttribute("loginedMemberLoginId");
 
 		response.getWriter().append("<script>alert('로그아웃 되었습니다.'); location.replace('../home/main');</script>");
+	}
+
+	public void mypage() throws ServletException, IOException {
+		
+		if(!isLogined()) {
+			response.getWriter()
+			.append("<script>alert('로그인 후 가능'); location.replace('../home/main');</script>");
+			return;
+		}
+		
+		request.getRequestDispatcher("/jsp/member/mypage.jsp").forward(request, response);
+		
 	}
 
 }

@@ -1,12 +1,12 @@
-<%@page import="java.util.List"%>
 <%@page import="java.util.*"%>
+<%@page import="com.KoreaIT.java.AM_jsp.dto.Article"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
+Article article = (Article) request.getAttribute("article");
 int loginedMemberId = (int) request.getAttribute("loginedMemberId");
-boolean writerCheck = (Integer)articleRow.get("loginId") == loginedMemberId;
+boolean writerCheck = (Integer)article.getLoginId() == loginedMemberId;
 boolean isLogined = (boolean) request.getAttribute("isLogined");
 %>
 
@@ -35,31 +35,33 @@ span {
 	margin-right: 20px;
 }
 </style>
-<title>Article <%=articleRow.get("id")%></title>
+<title>Article <%=article.getId()%></title>
 </head>
 <body>
 	<%@ include file="../part/top-bar.jspf" %>
+	<button><a href="../home/main">메인으로 이동</a></button>
+	<button><a href="../article/list">리스트</a></button>
 	<div class="container"
 		style="border: gray solid 1px; border-radius: 30px; padding: 20px 30px;">
 
 		<div class="header" style="padding: 10px;">
-			<div class="title" style="font-size: 1.7rem; font-weight: 500;"><%=articleRow.get("title")%></div>
+			<div class="title" style="font-size: 1.7rem; font-weight: 500;"><%= article.getTitle() %></div>
 
 			<div class="articleInfo"
 				style="display: flex; justify-content: space-between;">
 				
 				<div class="writeInfo" style="color: gray;">
-					<span> 작성 일자 : <%=articleRow.get("regDate").toString().substring(0, 10)%></span>
-					<span> 작성자 : <%=articleRow.get("name")%></span>
+					<span> 작성 일자 : <%=article.getRegDate().substring(0, 10)%></span>
+					<span> 작성자 : <%= article.getLoginId() %></span>
 				</div>
 				<%if(writerCheck) { %>
 				<div class="articleBtn">
 					<button>
-						<a href="modify?id=<%=articleRow.get("id")%>">modify</a>
+						<a href="modify?id=<%=article.getId()%>">modify</a>
 					</button>
 					<button>
 						<a onClick="if ( confirm('정말 삭제할거야? ㅠㅠ😢?') == false ) { return false; })"
-							href="doDelete?id=<%=articleRow.get("id")%>">delete</a>
+							href="doDelete?id=<%=article.getId()%>">delete</a>
 					</button>
 				</div>
 				<%} %>
@@ -68,7 +70,7 @@ span {
 		<hr style="color: gray;"/>
 
 		<div class="content" style="padding: 10px;">
-			<%=articleRow.get("body")%>
+			<%=article.getBody()%>
 		</div>
 
 	</div>

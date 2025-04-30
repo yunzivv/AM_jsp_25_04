@@ -78,11 +78,17 @@ public class DispatcherServlet extends HttpServlet {
 
 			String controllerName = reqURIBits[3];
 			String actionMethodName = reqURIBits[4];
+
 			if (controllerName.equals("home")) {
-				
+
 				HomeController homeController = new HomeController(request, response, conn);
-				homeController.showMain();
 				
+				switch (actionMethodName) {
+				case "list":
+					homeController.showMain();
+					break;
+				}
+
 			} else if (controllerName.equals("article")) {
 
 				ArticleController articleController = new ArticleController(request, response, conn);
@@ -131,6 +137,9 @@ public class DispatcherServlet extends HttpServlet {
 					break;
 				case "doLogout":
 					memberController.doLogout();
+					break;
+				case "mypage":
+					memberController.mypage();
 					break;
 				}
 			}
