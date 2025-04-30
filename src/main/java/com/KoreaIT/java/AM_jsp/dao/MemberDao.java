@@ -1,6 +1,7 @@
 package com.KoreaIT.java.AM_jsp.dao;
 
 import java.sql.Connection;
+import java.util.Map;
 
 import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
@@ -26,9 +27,10 @@ public class MemberDao {
 		SecSql sql = SecSql.from("SELECT *");
 		sql.append("FROM `member` WHERE loginId = ?;", loginId);
 		
-		Member member = new Member(DBUtil.selectRow(conn, sql));
+		Map<String, Object> memberRow = DBUtil.selectRow(conn, sql);
 		
-		return member != null ? member : null;
+		return memberRow.isEmpty() ? null : new Member(DBUtil.selectRow(conn, sql));
+		// return member; != null ? member : null
 	}
 
 	public void doJoin(String loginId, String loginPw, String name) {

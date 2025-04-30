@@ -88,13 +88,19 @@ public class MemberController {
 		String loginId = request.getParameter("loginId");
 		String loginPw = request.getParameter("loginPw");
 		
-		
 		Member member = memberService.getMemberByLoginId(loginId);
 		
+		if(member == null) {
+			response.getWriter()
+			.append("<script>alert('존재하지 않는 아이디'); location.replace('login');</script>");
+			return;
+		}
+		
+		System.out.println(member);
 		String checkPw = member.getLoginPw();
 		String name = member.getName();
 		
-		if(member == null || !checkPw.equals(loginPw)) {
+		if(!checkPw.equals(loginPw)) {
 			response.getWriter()
 			.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('login');</script>");
 			return;
