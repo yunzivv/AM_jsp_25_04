@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.Map;
 
+import com.KoreaIT.java.AM_jsp.service.MemberService;
+import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
 
@@ -17,23 +19,25 @@ public class MemberController {
 	private Connection conn;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	private MemberService memberService;
+	
+	public MemberController(HttpServletRequest request, HttpServletResponse response, Connection conn) {
+		this.conn = conn;
+		this.request = request;
+		this.response = response;
+		this.memberService = new MemberService(conn);
+	}
 	
 	private boolean isLogined() {
 		return request.getSession().getAttribute("loginedMember") != null;
 	}
 	
-	private Map<String, Object> getLoginedMember() {
-		return isLogined() ? (Map<String, Object>) request.getSession().getAttribute("loginedMember") : null;
+	private Member getLoginedMember() {
+		return isLogined() ? (Member) request.getSession().getAttribute("loginedMember") : null;
 	}
 
 	private int getLoginedMemberId() {
 		return isLogined() ? (int) request.getSession().getAttribute("loginedMemberId") : -1;
-	}
-
-	public MemberController(HttpServletRequest request, HttpServletResponse response, Connection conn) {
-		this.conn = conn;
-		this.request = request;
-		this.response = response;
 	}
 	
 	public void join() throws ServletException, IOException {
@@ -53,24 +57,14 @@ public class MemberController {
 		String loginPw = request.getParameter("loginPw");
 		String name = request.getParameter("name");
 
-
-		SecSql sql = SecSql.from("SELECT COUNT(*)");
-		sql.append("FROM `member` WHERE loginId = ?;", loginId);
-		
-		boolean isJoinableLoginId = DBUtil.selectRowIntValue(conn, sql) == 0;
+		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);
 		
 		if(!isJoinableLoginId) {
 			response.getWriter()
 			.append("<script>alert('이미 사용중인 아이디입니다.'); location.replace('join');</script>");
 		}
-		
-		sql = SecSql.from("INSERT INTO `member`");
-        sql.append("SET regDate = NOW(),");
-        sql.append("loginID = ?,", loginId);
-        sql.append("loginPw = ?,", loginPw);
-        sql.append("`name` = ?;", name);
         
-        DBUtil.insert(conn, sql);
+        memberService.doJoin(loginId, loginPw, name);
 
 		response.getWriter()
 				.append("<script>alert('회원가입이 완료되었습니다.'); location.replace('../home/main');</script>");
@@ -94,23 +88,22 @@ public class MemberController {
 		String loginId = request.getParameter("loginId");
 		String loginPw = request.getParameter("loginPw");
 		
-		SecSql sql = SecSql.from("SELECT *");
-		sql.append("FROM `member` WHERE loginId = ?;", loginId);
 		
-		Map memberRow = DBUtil.selectRow(conn, sql);
-		String checkPw = (String)memberRow.get("loginPw");
-		String name = (String)memberRow.get("name");
+		Member member = memberService.getMemberByLoginId(loginId);
 		
-		if(checkPw == null || !checkPw.equals(loginPw)) {
+		String checkPw = member.getLoginPw();
+		String name = member.getName();
+		
+		if(member == null || !checkPw.equals(loginPw)) {
 			response.getWriter()
 			.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('login');</script>");
 			return;
 		}
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("loginedMember", memberRow);
-		session.setAttribute("loginedMemberId", memberRow.get("id"));
-		session.setAttribute("loginedMemberLoginId", memberRow.get("loginId"));
+		session.setAttribute("loginedMember", member);
+		session.setAttribute("loginedMemberId", member.getId());
+		session.setAttribute("loginedMemberLoginId", member.getLoginId());
 		
 		response.getWriter()
 				.append(String.format("<script>alert('%s님 반갑습니다.'); location.replace('../home/main');</script>", name));

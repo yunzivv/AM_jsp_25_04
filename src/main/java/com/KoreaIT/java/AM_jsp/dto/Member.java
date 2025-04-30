@@ -8,22 +8,22 @@ public class Member {
     private int id;
     private LocalDateTime regDate;
     private String loginId;
-    private String lginPw;
+    private String loginPw;
     private String name;
 
     public Member(Map<String, Object> articleMap) {
         this.id = (int) articleMap.get("id");
         this.regDate = (LocalDateTime) articleMap.get("regDate");
         this.loginId = (String) articleMap.get("loginId");
-        this.lginPw = (String) articleMap.get("lginPw");
+        this.loginPw = (String) articleMap.get("loginPw");
         this.name = (String) articleMap.get("name");
     }
 
-    public Member(int id, LocalDateTime regDate, String loginId, String lginPw, String name) {
+    public Member(int id, LocalDateTime regDate, String loginId, String loginPw, String name) {
         this.id = id;
         this.regDate = regDate;
         this.loginId = loginId;
-        this.lginPw = lginPw;
+        this.loginPw = loginPw;
         this.name = name;
     }
 
@@ -52,12 +52,12 @@ public class Member {
         this.loginId = loginId;
     }
 
-    public String getLginPw() {
-        return lginPw;
+    public String getLoginPw() {
+        return loginPw;
     }
 
-    public void setLginPw(String lginPw) {
-        this.lginPw = lginPw;
+    public void setLoginPw(String loginPw) {
+        this.loginPw = loginPw;
     }
 
     public String getName() {

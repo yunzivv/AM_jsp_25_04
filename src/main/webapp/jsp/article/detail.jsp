@@ -1,5 +1,6 @@
 <%@page import="java.util.*"%>
 <%@page import="com.KoreaIT.java.AM_jsp.dto.Article"%>
+<%@page import="com.KoreaIT.java.AM_jsp.dto.Member"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,6 +9,9 @@ Article article = (Article) request.getAttribute("article");
 int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 boolean writerCheck = (Integer)article.getLoginId() == loginedMemberId;
 boolean isLogined = (boolean) request.getAttribute("isLogined");
+
+Member loginedMember = (Member) request.getAttribute("loginedMember");
+String loginedMemberLoginId = (String) request.getAttribute("loginedMemberLoginId");
 %>
 
 <!-- ctrl shift c -->
@@ -51,7 +55,7 @@ span {
 				style="display: flex; justify-content: space-between;">
 				
 				<div class="writeInfo" style="color: gray;">
-					<span> 작성 일자 : <%=article.getRegDate().substring(0, 10)%></span>
+					<span> 작성 일자 : <%=article.getRegDate().toString().substring(0, 10)%></span>
 					<span> 작성자 : <%= article.getLoginId() %></span>
 				</div>
 				<%if(writerCheck) { %>

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.KoreaIT.java.AM_jsp.dto.Article;
+import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.service.ArticleService;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
@@ -28,15 +29,15 @@ public class ArticleController {
 		this.response = response;
 		this.articleService = new ArticleService(conn);
 	}
-	
-	private Article getArticle(int id){
-		
+
+	private Article getArticle(int id) {
+
 		SecSql sql = SecSql.from("SELECT *");
 		sql.append("FROM article");
 		sql.append("WHERE id = ?;", id);
-		
+
 		Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-		
+
 		return articleRow != null ? new Article(articleRow) : null;
 	}
 
@@ -44,14 +45,14 @@ public class ArticleController {
 		return request.getSession().getAttribute("loginedMember") != null;
 	}
 
-	private Map<String, Object> getLoginedMember() {
-		return isLogined() ? (Map<String, Object>) request.getSession().getAttribute("loginedMember") : null;
+	private Member getLoginedMember() {
+		return isLogined() ? (Member) request.getSession().getAttribute("loginedMember") : null;
 	}
 
 	private int getLoginedMemberId() {
 		return isLogined() ? (int) request.getSession().getAttribute("loginedMemberId") : -1;
 	}
-	
+
 	private String getLoginedMemberLoginId() {
 		return isLogined() ? (String) request.getSession().getAttribute("loginedMemberLoginId") : null;
 	}
@@ -69,22 +70,22 @@ public class ArticleController {
 		int limitFrom = (page - 1) * itemsInAPage;
 		int totalCnt = articleService.getArticleCnt();
 		int totalPage = (int) Math.ceil(totalCnt / (double) itemsInAPage);
-		
+
 		List<Article> articles = articleService.getForPrintArticles(limitFrom, itemsInAPage);
 
 		// loginedMember
-		boolean isLogined = isLogined();
-		Map<String, Object> loginedMember = getLoginedMember();
-		int loginedMemberId = getLoginedMemberId();
+//		boolean isLogined = isLogined();
+//		Member loginedMember = getLoginedMember();
+//		int loginedMemberId = getLoginedMemberId();
 
 		request.setAttribute("page", page);
 		request.setAttribute("articles", articles);
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("totalPage", totalPage);
 
-		request.setAttribute("isLogined", isLogined);
-		request.setAttribute("loginedMember", loginedMember);
-		request.setAttribute("loginedMemberId", loginedMemberId);
+		request.setAttribute("isLogined", isLogined());
+		request.setAttribute("loginedMember", getLoginedMember());
+		request.setAttribute("loginedMemberId", getLoginedMemberId());
 
 		request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 
@@ -93,16 +94,18 @@ public class ArticleController {
 	public void showDetail() throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		Article article = articleService.getArticle(id);
-
-		// loginedMember
+//		Article article = articleService.getArticle(id);
+//
+//		// loginedMember
 //		boolean isLogined = isLogined();
-//		Map<String, Object> loginedMember = getLoginedMember();
-		int loginedMemberId = getLoginedMemberId();
+//		Member loginedMember = getLoginedMember();		
+//		int loginedMemberId = getLoginedMemberId();
 
-		request.setAttribute("article", article);
-		request.setAttribute("loginedMemberId", loginedMemberId);
+		request.setAttribute("article", articleService.getArticle(id));
+		
 		request.setAttribute("isLogined", isLogined());
+		request.setAttribute("loginedMember", getLoginedMember());
+		request.setAttribute("loginedMemberId", getLoginedMemberId());
 
 		request.getRequestDispatcher("/jsp/article/detail.jsp").forward(request, response);
 	}
@@ -133,7 +136,7 @@ public class ArticleController {
 	}
 
 	public void modify() throws ServletException, IOException {
-		
+
 		// article id
 		int id = Integer.parseInt(request.getParameter("id"));
 
@@ -170,7 +173,7 @@ public class ArticleController {
 	}
 
 	public void doDelete() throws ServletException, IOException {
-		
+
 		// article id
 		int id = Integer.parseInt(request.getParameter("id"));
 

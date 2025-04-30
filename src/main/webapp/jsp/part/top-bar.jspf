@@ -37,6 +37,9 @@
 	<button>
 		<a href="../member/doLogout">로그아웃</a>
 	</button>
+	<div>
+	<%=loginedMember.getName() %>
+	</div>
 	<%
 	}
 	%>

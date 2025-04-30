@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.Map;
 
+import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
 
@@ -22,8 +23,8 @@ public class HomeController {
 		return request.getSession().getAttribute("loginedMember") != null;
 	}
 	
-	private Map<String, Object> getLoginedMember() {
-		return isLogined() ? (Map<String, Object>) request.getSession().getAttribute("loginedMember") : null;
+	private Member getLoginedMember() {
+		return isLogined() ? (Member) request.getSession().getAttribute("loginedMember") : null;
 	}
 
 	private int getLoginedMemberId() {
@@ -39,7 +40,7 @@ public class HomeController {
 	public void showMain() throws ServletException, IOException {
 		
 		boolean isLogined = isLogined();
-		Map<String, Object> loginedMember = getLoginedMember();
+		Member loginedMember = getLoginedMember();
 		int loginedMemberId = getLoginedMemberId();
 		
 		request.setAttribute("isLogined", isLogined);

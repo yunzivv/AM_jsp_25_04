@@ -1,13 +1,14 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.KoreaIT.java.AM_jsp.dto.Article"%>
+<%@page import="com.KoreaIT.java.AM_jsp.dto.Member"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 boolean isLogined = (boolean) request.getAttribute("isLogined");
 List<Article> articles = (List<Article>) request.getAttribute("articles");
-Map<String, Object> loginedMember = (Map<String, Object>) request.getAttribute("loginedMember");
+Member loginedMember = (Member) request.getAttribute("loginedMember");
 
 int cPage = (int) request.getAttribute("page");
 int totalPage = (int) request.getAttribute("totalPage");

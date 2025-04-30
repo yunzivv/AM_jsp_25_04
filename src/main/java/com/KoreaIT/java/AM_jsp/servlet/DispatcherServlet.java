@@ -17,6 +17,7 @@ import java.util.Map;
 import com.KoreaIT.java.AM_jsp.controller.ArticleController;
 import com.KoreaIT.java.AM_jsp.controller.HomeController;
 import com.KoreaIT.java.AM_jsp.controller.MemberController;
+import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
 
@@ -54,13 +55,13 @@ public class DispatcherServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			boolean isLogined = false;
-			Map<String, Object> loginedMember = null;
+			Member loginedMember = null;
 			String loginedMemberLoginId = null;
 
 			if (session.getAttribute("loginedMemberLoginId") != null) {
 				isLogined = true;
 				loginedMemberLoginId = (String) session.getAttribute("loginedMemberLoginId");
-				loginedMember = (Map<String, Object>) session.getAttribute("loginedMember");
+				loginedMember = (Member) session.getAttribute("loginedMember");
 			}
 
 			request.setAttribute("isLogined", isLogined);
@@ -84,7 +85,7 @@ public class DispatcherServlet extends HttpServlet {
 				HomeController homeController = new HomeController(request, response, conn);
 				
 				switch (actionMethodName) {
-				case "list":
+				case "main":
 					homeController.showMain();
 					break;
 				}
