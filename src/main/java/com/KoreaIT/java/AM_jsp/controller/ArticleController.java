@@ -65,7 +65,6 @@ public class ArticleController {
 			keyword = request.getParameter("keyword");
 		}
 		
-		
 		// pagenation
 		int page = 1;
 		if (request.getParameter("page") != null && request.getParameter("page").length() != 0) {
@@ -79,6 +78,8 @@ public class ArticleController {
 
 		List<Article> articles = articleService.getForPrintArticles(keyword, limitFrom, itemsInAPage);
 
+		request.setAttribute("keyword", keyword);
+		
 		request.setAttribute("page", page);
 		request.setAttribute("articles", articles);
 		request.setAttribute("totalCnt", totalCnt);

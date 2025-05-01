@@ -13,6 +13,7 @@ Member loginedMember = (Member) request.getAttribute("loginedMember");
 int cPage = (int) request.getAttribute("page");
 int totalPage = (int) request.getAttribute("totalPage");
 int totalCnt = (int) request.getAttribute("totalCnt");
+String keyword = (String) request.getAttribute("keyword");
 %>
 <!DOCTYPE html>
 <html>
@@ -99,7 +100,11 @@ table>tbody>tr:last-child {
 			</div>
 			<section class="flex-grow"></section>
 			<div class="bg-neutral-800 mx-2 w-60 flex">
-				<input type="text" name="keyword" placeholder="search keyword" class="block flex-grow px-2"/>
+				<input type="text" name="keyword" placeholder="search keyword" 
+				<%if(keyword.length() != 0) { %>
+				value=<%=keyword %>
+				<%} %>
+				class="block flex-grow px-2"/>
 				<button type="submit">
 					<i class="fa-solid fa-magnifying-glass text-neutral-200 text-xl px-1"></i>
 				</button>
