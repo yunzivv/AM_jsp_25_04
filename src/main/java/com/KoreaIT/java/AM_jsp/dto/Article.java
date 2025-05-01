@@ -13,6 +13,7 @@ public class Article {
 	private String body;
 	private int hit;
 	private String writer;
+	private int writerGrade;
 
 	public Article(Map<String, Object> articleMap) {
 		this.id = (int) articleMap.get("id");
@@ -23,78 +24,42 @@ public class Article {
 		this.body = (String) articleMap.get("body");
 		this.hit = (int) articleMap.get("hit");
 		this.writer = (String) articleMap.get("name");
-	}
-
-	public Article(int id, LocalDateTime regDate, LocalDateTime updateDate, int loginId, String title, String body) {
-		this.id = id;
-		this.regDate = regDate;
-		this.updateDate = updateDate;
-		this.loginId = loginId;
-		this.title = title;
-		this.body = body;
+		this.writerGrade = (int) articleMap.get("grade");
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public LocalDateTime getRegDate() {
 		return regDate;
-	}
-
-	public void setRegDate(LocalDateTime regDate) {
-		this.regDate = regDate;
 	}
 
 	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(LocalDateTime updateDate) {
-		this.updateDate = updateDate;
-	}
-
 	public int getLoginId() {
 		return loginId;
-	}
-
-	public void setLoginId(int memberId) {
-		this.loginId = memberId;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getBody() {
 		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
 	}
 
 	public int getHit() {
 		return hit;
 	}
 
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
-
 	public String getWriter() {
 		return writer;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public int getWriterGrade() {
+		return writerGrade;
 	}
 }

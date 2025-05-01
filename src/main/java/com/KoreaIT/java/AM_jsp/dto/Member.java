@@ -10,6 +10,7 @@ public class Member {
     private String loginId;
     private String loginPw;
     private String name;
+    private int grade;
 
     public Member(Map<String, Object> articleMap) {
         this.id = (int) articleMap.get("id");
@@ -17,14 +18,7 @@ public class Member {
         this.loginId = (String) articleMap.get("loginId");
         this.loginPw = (String) articleMap.get("loginPw");
         this.name = (String) articleMap.get("name");
-    }
-
-    public Member(int id, LocalDateTime regDate, String loginId, String loginPw, String name) {
-        this.id = id;
-        this.regDate = regDate;
-        this.loginId = loginId;
-        this.loginPw = loginPw;
-        this.name = name;
+        this.grade = (int) articleMap.get("grade");
     }
 
 
@@ -32,39 +26,23 @@ public class Member {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public LocalDateTime getRegDate() {
         return regDate;
-    }
-
-    public void setRegDate(LocalDateTime regDate) {
-        this.regDate = regDate;
     }
 
     public String getLoginId() {
         return loginId;
     }
 
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
-    }
-
     public String getLoginPw() {
         return loginPw;
-    }
-
-    public void setLoginPw(String loginPw) {
-        this.loginPw = loginPw;
     }
 
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    
+    public int getGrade() {
+        return grade;
     }
 }

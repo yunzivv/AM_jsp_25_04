@@ -1,0 +1,119 @@
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<title>Insert title here</title>
+</head>
+<style>
+button {
+	margin: 5px;
+}
+</style>
+<body>
+
+	<section class="menu-group hidden">
+			<i class="fa-solid fa-bomb"></i>
+			<i class="fa-solid fa-glasses"></i>
+			<i class="fa-solid fa-vihara"></i>
+			<i class="fa-solid fa-poo"></i>			
+			<i class="fa-solid fa-trowel"></i>
+			<i class="fa-solid fa-eye-slash"></i>
+			<i class="fa-solid fa-bolt"></i>
+			<i class="fa-solid fa-ranking-star"></i>
+			<i class="fa-solid fa-compass"></i>
+			<i class="fa-solid fa-gear"></i>
+			<i class="fa-solid fa-skull-crossbones"></i>
+			<i class="fa-solid fa-user"></i>
+			<i class="fa-solid fa-user-tie"></i>
+			<i class="fa-solid fa-user-ninja"></i>
+			<i class="fa-solid fa-user-secret"></i>
+		</section>
+		
+		
+		<%
+		if (!isLogined) {
+		%>
+		<div class="bg-yellow-300">
+<!-- 			<button type="button" -->
+<!-- 			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"> -->
+				<a href="../member/join">Join</a>
+<!-- 			</button> -->
+<!-- 			<button type="button" -->
+<!-- 			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"> -->
+				<a href="../member/login">Login</a>
+<!-- 			</button> -->
+		</div>
+		<%
+		}
+		%>
+
+		<%
+		if (isLogined) {
+		%>
+		<div class="bg-yellow-300">
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+			<a href="../member/doLogout">LOGOUT</a>
+		</button>
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"><i class="fa-solid fa-user-ninja"></i>
+			<a href="../member/mypage"">MY NINZA <%=loginedMember.getName()%></a>
+		</button>
+		</div>
+		<%
+		};
+		%>
+	</div>
+
+
+<!-- 	 sm:text-center  md:flex md:items-center md:justify-between-->
+
+<!-- <footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-100"> -->
+<!--     <div class="flex flex-col justify-start w-full mx-auto max-w-screen-xl p-6"> -->
+<!-- 	    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"> -->
+<!-- 	        <li> -->
+<!-- 	            <a href="#" class="hover:underline me-4 md:me-6">About</a> -->
+<!-- 	        </li> -->
+<!-- 	        <li> -->
+<!-- 	            <a href="https://onesquareminesweeper.com/" class="hover:underline me-4 md:me-6">Nothing</a> -->
+<!-- 	        </li> -->
+<!-- 	        <li> -->
+<!-- 	            <a href="#" class="hover:underline me-4 md:me-6">FAQ</a> -->
+<!-- 	        </li> -->
+<!-- 	        <li> -->
+<!-- 	            <a href="#" class="hover:underline">Contact</a> -->
+<!-- 	        </li> -->
+<!-- 	    </ul> -->
+<!--       <span class="text-sm text-gray-800 dark:text-gray-400 mt-3">Created by <strong>yunzi</strong> © 2025 – No rights reserved -->
+<!--     </span> -->
+<!--     </div> -->
+<!-- </footer> -->
+
+
+<!-- font -->
+<!-- /* @font-face { */ -->
+<!-- /*     font-family: 'HeirofLightBold'; */ -->
+<!-- /*     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/HeirofLightBold.woff') format('woff'); */ -->
+<!-- /*     font-weight: normal; */ -->
+<!-- /*     font-style: normal; */ -->
+<!-- /* } */ -->
+
+<!-- /* @font-face { */ -->
+<!-- /*     font-family: 'HeirofLightRegular'; */ -->
+<!-- /*     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/HeirofLightRegular.woff') format('woff'); */ -->
+<!-- /*     font-weight: normal; */ -->
+<!-- /*     font-style: normal; */ -->
+<!-- /* } */ -->
+
+<!-- /* html > body { */ -->
+<!-- /*     font-family: 'HeirofLightRegular', sans-serif; */ -->
+<!-- /*  } */ -->
+
+</body>
+</html>

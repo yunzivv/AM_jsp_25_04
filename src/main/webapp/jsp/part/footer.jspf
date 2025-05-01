@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <style>
+
 button {
 	margin: 5px;
 }
@@ -18,16 +19,16 @@ button {
 <body>
 
 	<footer class="rounded-lg m-4 bg-neutral-100 text-neutral-400">
-    <div class="flex flex-col justify-start w-full mx-auto max-w-screen-xl p-4 border border-red border-solid">
-	    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0">
+    <div class="flex flex-col justify-start w-full mx-auto max-w-screen-xl p-4">
+	    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0 ">
 	        <li>
-	            <a href="#" class="hover:underline me-6">About</a>
+	            <a href="#" class="hover:underline me-6">About Ninza</a>
 	        </li>
 	        <li>
-	            <a href="https://onesquareminesweeper.com/" class="hover:underline me-6">Nothing</a>
+	            <a href="https://onesquareminesweeper.com/" class="hover:underline me-6">Minesweeper</a>
 	        </li>
 	        <li>
-	            <a href="#" class="hover:underline me-6">Contact</a>
+	            <a href="#" class="hover:underline me-6">Contact Impossible</a>
 	        </li>
 	        <li>
 	            <a href="#" class="hover:underline">FAQ</a>

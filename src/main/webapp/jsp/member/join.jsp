@@ -9,7 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <title>Member join</title>
+<style>
+</style>
 <script type="text/javascript">
    function validate() {
         let re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식

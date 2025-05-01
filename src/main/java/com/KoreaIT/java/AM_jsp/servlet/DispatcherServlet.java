@@ -34,8 +34,6 @@ public class DispatcherServlet extends HttpServlet {
 		try {
 			// 드라이버 연결
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("연결 성공!");
-			response.getWriter().append("드라이버 로딩 성공! ");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패" + e);
