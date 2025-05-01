@@ -27,6 +27,10 @@ a {
 	text-decoration: none;
 }
 </style>
+
+<title>Article Manager</title>
+</head>
+<body>
 <script type="text/javascript">
 function black(){
 $("div").click(fuction(){
@@ -36,9 +40,6 @@ $("div").click(fuction(){
 
 black();
 </script>
-<title>Article Manager</title>
-</head>
-<body>
 	<%@ include file="../part/top-bar.jspf"%>
 	<div class="main text-9xl font-bold text-left text-neutral-800 pl-20 pt-20">
 		<span class="block">NINZA</span>

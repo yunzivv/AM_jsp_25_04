@@ -6,9 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <title>Insert title here</title>
 </head>
 <style>
@@ -16,30 +14,38 @@
 	font-size: 0;
 }
 </style>
-<script type="text/javascript">
-function ninza() {
- $(".member").mouseover(function(){
-	 $(this).addClass("hidden");
-	 $(this).siblings(".member").removeClass("hidden");
- });
- $(".member").mouseout(function(){
-	 $(this).removeClass("hidden");
-	 $(this).siblings(".member").addClass("hidden");
- });
-}
 
-ninza();
-</script>
 <body>
-	<div class="member text-neutral-800 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-200 p-5">
+	<div class="member-btn">
+		<div class="m-default text-neutral-800 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-200 p-5">
 		<% if(isLogined) { %>
 		<i class="fa-solid fa-user-ninja text-3xl"></i>
 		<% } else {%>
 		<i class="fa-solid fa-user text-3xl"></i>
 		<% } %>	
+		</div>
+		<div class="m-ninza hidden text-neutral-200 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-800 overflow-hidden">
+		<a class="block w-full h-full p-5" href="../member/mypage"><i class="fa-solid fa-user-ninja text-3xl"></i></a>
+		</div>
 	</div>
-	<div class="member hidden text-neutral-200 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-800 p-5">
-		<i class="fa-solid fa-user-ninja text-3xl"></i>
-	</div>
+	
+	
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	<script type="text/javascript">
+		function ninza() {
+		 $(".member-btn").on("mouseenter", function (){
+			 $(this).children(".m-default").stop().fadeOut(200);
+			 $(this).children(".m-ninza").stop().fadeIn(200);
+		 });
+		 $(".member-btn").on("mouseleave", function (){
+			 $(this).children(".m-default").stop().fadeIn(200);
+			 $(this).children(".m-ninza").stop().fadeOut(200);
+		 });
+		}
+		
+		ninza();
+	</script>
 </body>
 </html>

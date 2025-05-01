@@ -62,7 +62,7 @@ table>tbody>tr:last-child {
 	<%@ include file="../part/top-bar.jspf"%>
 	
 
-	<div class="header w-11/12 m-auto p-10 bg-blue-300">
+	<div class="header w-11/12 m-auto p-6 bg-blue-300 text-neutral-800">
 		<div class="title text-5xl font-bold ml-4">
 			<span>Top Secret Ninja Talk</span>
 		</div>
