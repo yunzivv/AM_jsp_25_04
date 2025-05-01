@@ -21,11 +21,6 @@ int totalCnt = (int) request.getAttribute("totalCnt");
 <script src="https://cdn.tailwindcss.com"></script>
 <title>게시글 목록</title>
 <style>
-body {
-	text-align: center;
-}
-
-
 a {
 	color: inherit;
 	text-decoration: none;
@@ -36,17 +31,21 @@ a:hover {
 	text-decoration: underline;
 }
 
-table > tbody >tr:last-child {
-	border : 0px;
+form > div {
+	border: 1px solid oklch(21.6% 0.006 56.043);
+	border-radius: 5px;
+	overflow: hidden;
 }
 
+table>tbody>tr:last-child {
+	border: 0px;
+}
 
 .page {
 	font-size: 1rem;
 }
 
 .page>a {
-	color: gray;
 	text-decoration: none;
 }
 
@@ -54,51 +53,72 @@ table > tbody >tr:last-child {
 	color: black;
 	font-weight: bold;
 }
+
+/* input[type='date']::before { */
+/*   content: attr(data-placeholder); */
+/*   width: 100%; */
+/*   text-align: center; */
+/*   color: inherit; */
+/* } */
 </style>
 </head>
 <body>
-	<div class="bg-yellow-200">
-	<%@ include file="../part/top-bar.jspf"%></div>
+	<div class="">
+
+		<%@ include file="../part/top-bar.jspf"%></div>
+
+	<div class="no-pilyo">
+		<button>
+			<a href="../home/main">메인으로 이동</a>
+		</button>
+		<button>
+			<a href="write">새 글 작성</a>
+		</button>
+	</div>
+
 	<div class="header w-4/5 min-w-max m-auto p-10 bg-blue-300">
-		<div class="title">
-			<h2>게시글 목록</h2>
+		<div class="title text-center text-4xl font-bold">
+			<span>ARTICLES</span>
 		</div>
-		<div style="display: flex; background-color: red;">
-			<button>
-				<a href="../home/main">메인으로 이동</a>
-			</button>
-			<form action=""
-				style="display: flex; flex-grow: 1; background-color: blue;">
-				<input type="text" place-holder="search keyword"
-					style="display: block; flex-grow: 1;" />
-			</form>
-			<!-- 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div> -->
-			<button>
-				<a href="write">새 글 작성</a>
-			</button>
-		</div>
+		<div style="display: flex; background-color: red;"></div>
 	</div>
 
 
-	<div class="container"
-		style="width: 90vw; min-width: 500px; margin: auto; background-color: tomato;'">
+	<div class="aboutArticle w-11/12 m-auto bg-green-200">
 		<div class="articleCnt">
-			총 게시물 :
-			<%=totalCnt%>개
+			TOTAL :
+			<%=totalCnt%>
 		</div>
+		<button><a href="write">WRITE</a></button>
+		<form class="search-box flex text-neutral-400 h-8" action="list" method="POST">
+			<div class="mx-2">
+				<input type="date" data-placeholder="START DATE" class="block h-full"/> 
+			</div>
+			<div class="mx-2">
+				<input type="date"  data-placeholder="END DATE" class="block h-full"/> 
+			</div>
+			<section class="flex-grow"></section>
+			<div class="bg-neutral-800 mx-2 w-60 flex">
+				<input type="text" placeholder="search keyword" class="block flex-grow px-2"/>
+				<button type="submit">
+					<i class="fa-solid fa-magnifying-glass text-neutral-200 text-xl"></i>
+				</button>
+			</div>
+		</form>
 	</div>
 
-	<div class="overflow-x-auto shadow-md sm:rounded-lg w-11/12 m-auto border-solid border">
+	<div
+		class="overflow-x-auto w-11/12 mx-auto my-4 border-solid border bg-red-300">
+		<!-- rounded-xl -->
 		<table
-			class="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-gray-400">
-			<thead
-				class="text-base text-gray-200 bg-gray-800">
+			class="w-full text-sm text-center rtl:text-right text-neutral-800 text-neutral-400">
+			<thead class="text-base text-neutral-200 bg-neutral-800">
 				<tr>
 					<th scope="col" class="px-5 py-3">NO</th>
-<!-- 					<th scope="col" class="px-6 py-3">BOARD</th> -->
+					<!-- <th scope="col" class="px-6 py-3">BOARD</th> -->
 					<th scope="col" class="px-5 py-3 w-3/5">TITLE</th>
-					<th scope="col" class="px-5 py-3">REGDATE</th>
 					<th scope="col" class="px-5 py-3">WRITER</th>
+					<th scope="col" class="px-5 py-3">REGDATE</th>
 					<th scope="col" class="px-5 py-3">HIT</th>
 				</tr>
 			</thead>
@@ -107,14 +127,14 @@ table > tbody >tr:last-child {
 				for (Article article : articles) {
 				%>
 				<tr
-					class="border-b bg-gray-200 border-gray-300 text-gray-500">
+					class="border-b bg-neutral-100 border-neutral-300 text-neutral-500">
 					<td class="px-5 py-3"><%=article.getId()%></td>
-<%-- 					<td class="px-6 py-4"><%=article.getBoard()%></td> --%>
-					<td class="px-5 py-3 text-gray-800"><a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
-					<td class="px-5 py-3"><%=article.getRegDate().toString().substring(0, 10)%></td>
+					<%-- 					<td class="px-6 py-4"><%=article.getBoard()%></td> --%>
+					<td><a class="block text-left pl-6"
+						href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
 					<td class="px-5 py-3"><%=article.getWriter()%></td>
-					<td class="px-5 py-3"><%=article.getHit()%></a>
-					</td>
+					<td class="px-5 py-3"><%=article.getRegDate().toString().substring(0, 10)%></td>
+					<td class="px-5 py-3"><%=article.getHit()%></a></td>
 				</tr>
 				<%
 				}
@@ -123,16 +143,19 @@ table > tbody >tr:last-child {
 		</table>
 	</div>
 
-	<div class="page text-gray-800">
+	<div class="page text-neutral-800 text-center mb-16">
 		<%
 		for (int i = 1; i <= totalPage; i++) {
 		%>
-		<a class="<%=cPage == i ? "cPage" : ""%>" href="list?page=<%=i%>"><%=i%></a>
+		<a class="<%=cPage == i ? "cPage" : ""%> mx-1.5"
+			href="list?page=<%=i%>"><%=i%></a>
 		<%
 		}
 		%>
 
 	</div>
+
+	<%@ include file="../part/footer.jspf"%>
 
 </body>
 </html>
