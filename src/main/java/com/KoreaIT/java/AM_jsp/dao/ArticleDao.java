@@ -69,7 +69,8 @@ public class ArticleDao {
 		sql.append("updateDate = NOW(),");
 		sql.append("loginId = ?,", loginedMemberId);
 		sql.append("title = ?,", title);
-		sql.append("`body` = ?;", body);
+		sql.append("`body` = ?,", body);
+		sql.append("hit = 0;");
 
 		return DBUtil.insert(conn, sql);
 	}
