@@ -6,20 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <title>Insert title here</title>
 </head>
 <style>
-button {
-	margin: 5px;
+.menu > li {
+	margin-top: .3rem;
 }
 </style>
-<script type="text/javascript">
-$(".menu").click(function() {
-	
-});
-</script>
+
 <body class="text-neutral-600">
 
 	<div class="flex h-30 w-full p-4 m-2">	
@@ -31,17 +25,20 @@ $(".menu").click(function() {
 		
 		<div class="flex-grow"></div>
 		
-		<div class="menu-box flex items-center mr-6 bg-red-300 text-3xl text-neutral-800">
+		<div class="menu-box flex items-center mr-6 text-3xl text-neutral-800">
 			<ul class="menu">
-				<li><a href="#">Dojo</a></li>
-				<li><a href="../article/list">Ninza Board</a></li>
-				<li><a href="#">About Ninza</a></li>
-				<li><a href="../ninza/contact">Contact</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="#">Dojo</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="../article/list">Ninza Board</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="#">About Ninza</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="../ninza/contact">Contact</a></li>
 			</ul>
 		</div>		
 	</div>
 		
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script type="text/javascript">
 
-
+</script>
 </body>
 </html>

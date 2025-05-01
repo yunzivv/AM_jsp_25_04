@@ -61,13 +61,13 @@ public class MemberController {
 		
 		if(!isJoinableLoginId) {
 			response.getWriter()
-			.append("<script>alert('이미 사용중인 아이디입니다.'); location.replace('join');</script>");
+			.append("<script>alert('이미 사용중인 닌자 아이디'); location.replace('join');</script>");
 		}
         
         memberService.doJoin(loginId, loginPw, name);
 
 		response.getWriter()
-				.append("<script>alert('회원가입이 완료되었습니다.'); location.replace('../home/main');</script>");
+				.append("<script>alert('닌자가 된 것을 축하한다.'); location.replace('../home/main');</script>");
 		
 	}
 	
@@ -92,7 +92,7 @@ public class MemberController {
 		
 		if(member == null) {
 			response.getWriter()
-			.append("<script>alert('존재하지 않는 아이디'); location.replace('login');</script>");
+			.append("<script>alert('그런 닌자 아이디는 존재하지 않는다.'); location.replace('login');</script>");
 			return;
 		}
 		
@@ -102,7 +102,7 @@ public class MemberController {
 		
 		if(!checkPw.equals(loginPw)) {
 			response.getWriter()
-			.append("<script>alert('잘못된 아이디 또는 비밀번호 입니다.'); location.replace('login');</script>");
+			.append("<script>alert('잘못된 아이디 또는 비밀번호'); location.replace('login');</script>");
 			return;
 		}
 		
@@ -112,7 +112,7 @@ public class MemberController {
 		session.setAttribute("loginedMemberLoginId", member.getLoginId());
 		
 		response.getWriter()
-				.append(String.format("<script>alert('%s님 반갑습니다.'); location.replace('../home/main');</script>", name));
+				.append(String.format("<script>alert('닌자 %s 확인 완료.'); location.replace('../home/main');</script>", name));
 
 	}
 
@@ -136,7 +136,7 @@ public class MemberController {
 		
 		if(!isLogined()) {
 			response.getWriter()
-			.append("<script>alert('로그인 후 가능'); location.replace('../home/main');</script>");
+			.append("<script>alert('닌자 확인 후 가능'); location.replace('../home/main');</script>");
 			return;
 		}
 		

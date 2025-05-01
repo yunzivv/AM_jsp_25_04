@@ -17,6 +17,7 @@ import java.util.Map;
 import com.KoreaIT.java.AM_jsp.controller.ArticleController;
 import com.KoreaIT.java.AM_jsp.controller.HomeController;
 import com.KoreaIT.java.AM_jsp.controller.MemberController;
+import com.KoreaIT.java.AM_jsp.controller.NinzaController;
 import com.KoreaIT.java.AM_jsp.dto.Member;
 import com.KoreaIT.java.AM_jsp.util.DBUtil;
 import com.KoreaIT.java.AM_jsp.util.SecSql;
@@ -139,6 +140,15 @@ public class DispatcherServlet extends HttpServlet {
 					break;
 				case "mypage":
 					memberController.mypage();
+					break;
+				}
+			} else if (controllerName.equals("ninza")) {
+				
+				NinzaController ninzaController = new NinzaController(request, response, conn);
+				
+				switch(actionMethodName) {
+				case "contact":
+					ninzaController.contact();
 					break;
 				}
 			}

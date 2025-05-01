@@ -64,7 +64,7 @@ table>tbody>tr:last-child {
 
 	<div class="header w-11/12 m-auto p-6 bg-blue-300 text-neutral-800">
 		<div class="title text-5xl font-bold ml-4">
-			<span>Top Secret Ninja Talk</span>
+			<span>Ninza Board</span>
 		</div>
 		<button>
 			<a href="write">새 글 작성</a>
@@ -94,17 +94,9 @@ table>tbody>tr:last-child {
 		</form>
 		
 	</div>
-	
-<!-- 	<div class="articleCnt"> -->
-<!-- 			TOTAL : -->
-<%-- 			<%=totalCnt%> --%>
-<!-- 	</div> -->
 
-	<div
-		class="overflow-x-auto w-11/12 mx-auto mb-4 border-solid border bg-red-300">
-		<!-- rounded-xl -->
-		<table
-			class="w-full text-sm text-center rtl:text-right text-neutral-800 text-neutral-400">
+	<div class="overflow-x-auto w-11/12 mx-auto mb-4 border-solid border bg-red-300">
+		<table class="w-full text-sm text-center rtl:text-right text-neutral-800 text-neutral-400">
 			<thead class="text-base text-neutral-200 bg-neutral-800">
 				<tr>
 					<th scope="col" class="px-5 py-3">NO</th>
@@ -119,12 +111,10 @@ table>tbody>tr:last-child {
 				<%
 				for (Article article : articles) {
 				%>
-				<tr
-					class="border-b bg-neutral-100 border-neutral-300 text-neutral-500">
+				<tr class="border-b bg-neutral-100 border-neutral-300 text-neutral-500">
 					<td class="px-5 py-3"><%=article.getId()%></td>
 					<%-- 					<td class="px-6 py-4"><%=article.getBoard()%></td> --%>
-					<td><a class="block text-left pl-6"
-						href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
+					<td><a class="block text-left pl-6" href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
 					<td class="px-5 py-3"><%=article.getWriter()%></td>
 					<td class="px-5 py-3"><%=article.getRegDate().toString().substring(0, 10)%></td>
 					<td class="px-5 py-3"><%=article.getHit()%></a></td>
