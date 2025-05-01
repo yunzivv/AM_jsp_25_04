@@ -94,4 +94,14 @@ public class ArticleDao {
 		
 	}
 
+	public void updateHits(int id) {
+		
+		SecSql sql = SecSql.from("UPDATE article");
+		sql.append("SET hit = hit + 1");
+		sql.append("WHERE id = ?;", id);
+
+		DBUtil.update(conn, sql);
+		
+	}
+
 }

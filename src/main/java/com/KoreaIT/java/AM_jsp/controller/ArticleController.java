@@ -88,6 +88,7 @@ public class ArticleController {
 
 	public void showDetail() throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		articleService.updateHits(id);
 
 		request.setAttribute("article", articleService.getArticle(id));
 		

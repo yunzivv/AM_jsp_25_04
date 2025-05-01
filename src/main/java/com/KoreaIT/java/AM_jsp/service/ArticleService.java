@@ -39,18 +39,24 @@ public class ArticleService {
 
 	// article 작성
 	public int insertAndGetId(int loginedMemberId, String title, String body) {
-		
+
 		return articleDao.insertAndGetId(loginedMemberId, title, body);
 	}
 
 	public void updateArticle(String title, String body, int id) {
-		
+
 		articleDao.updateArticle(title, body, id);
 	}
 
 	public void deleteArticle(int id) {
-		
+
 		articleDao.deleteArticle(id);
+	}
+
+	public void updateHits(int id) {
+
+		articleDao.updateHits(id);
+
 	}
 
 }

@@ -11,6 +11,7 @@ public class Article {
 	private int loginId;
 	private String title;
 	private String body;
+	private int hit;
 	private String writer;
 
 	public Article(Map<String, Object> articleMap) {
@@ -20,6 +21,7 @@ public class Article {
 		this.loginId = (int) articleMap.get("loginId");
 		this.title = (String) articleMap.get("title");
 		this.body = (String) articleMap.get("body");
+		this.hit = (int) articleMap.get("hit");
 		this.writer = (String) articleMap.get("name");
 	}
 
@@ -78,6 +80,14 @@ public class Article {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 
 	public String getWriter() {

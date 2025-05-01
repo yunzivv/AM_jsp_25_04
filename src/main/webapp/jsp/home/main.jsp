@@ -26,7 +26,7 @@ a {
 <title>Article Manager</title>
 </head>
 <body>
-	<div class="header" style="display:flex; background-color: red;">
+	<div class="header" style="display:flex; align-items: flex-end; background-color: red;">
 	<h1 style="flex-grow:1; text-align: center">메인 페이지</h1>
 		<%@ include file="../part/top-bar.jspf"%>	
 	</div>

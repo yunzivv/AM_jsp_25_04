@@ -63,8 +63,8 @@ table>thead>tr>th, table>tbody>tr>td {
 		<%@ include file="../part/top-bar.jspf" %>
 		<div style="display:flex; background-color: red;">
 			<button><a href="../home/main">메인으로 이동</a></button>
-			<form action="" style="flex-grow:1;" >
-				<input type="text" place-holder="search keyword" style="height:30px; margin: 0 10px; width: 100%;"/>
+			<form action="" style="display: flex; flex-grow:1; background-color: blue;" >
+ 				<input type="text" place-holder="search keyword" style="display: block; flex-grow:1;"/>
 			</form>
 <!-- 			<div class="searchBox" style="border:1px solid black; boder-ladius:10px; height: 30px; flex-grow:1;"></div> -->
 			<button><a href="write" >새 글 작성</a></button>
@@ -83,8 +83,8 @@ table>thead>tr>th, table>tbody>tr>td {
 				<th>번호</th>
 				<th>날짜</th>
 				<th>제목</th>
-<!-- 				<th>내용</th> -->
 				<th>작성자</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -96,6 +96,7 @@ table>thead>tr>th, table>tbody>tr>td {
 				<td><%=article.getRegDate().toString().substring(0,10) %></td>
 				<td><a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a></td>
 				<td><%=article.getWriter()%></td>
+				<td><%=article.getHit()%></td>
 			</tr>
 			<%
 			}

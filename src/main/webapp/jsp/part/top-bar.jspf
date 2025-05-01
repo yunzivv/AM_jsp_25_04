@@ -8,11 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+button {
+	margin: 5px;
+}
+</style>
 <body>
 
-<!-- 	<button> -->
-<%-- 		<a href="<%=isLogined ? "../member/mypage" : "../member/login"%>">마이페이지</a> --%>
-<!-- 	</button> -->
+
 	<%
 	if (!isLogined) {
 	%>
