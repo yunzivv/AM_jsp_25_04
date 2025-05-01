@@ -17,7 +17,7 @@
 
 <body>
 	<div class="member-btn">
-		<div class="m-default text-neutral-800 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-200 p-5">
+		<div class="m-default text-neutral-800 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-200 px-5 py-4">
 		<% if(isLogined) { %>
 		<i class="fa-solid fa-user-ninja text-3xl"></i>
 		<% } else {%>
@@ -25,7 +25,7 @@
 		<% } %>	
 		</div>
 		<div class="m-ninza hidden text-neutral-200 fixed left-auto right-10 top-auto bottom-10 rounded-full bg-neutral-800 overflow-hidden">
-		<a class="block w-full h-full p-5" href="../member/mypage"><i class="fa-solid fa-user-ninja text-3xl"></i></a>
+		<a class="block w-full h-full px-5 py-4" href="../member/mypage"><i class="fa-solid fa-user-ninja text-3xl"></i></a>
 		</div>
 	</div>
 	
@@ -36,12 +36,12 @@
 	<script type="text/javascript">
 		function ninza() {
 		 $(".member-btn").on("mouseenter", function (){
-			 $(this).children(".m-default").stop().fadeOut(200);
-			 $(this).children(".m-ninza").stop().fadeIn(200);
+ 			 $(this).children(".m-default").stop().fadeOut(200);
+			 $(this).children(".m-ninza").stop().fadeIn(100);
 		 });
 		 $(".member-btn").on("mouseleave", function (){
-			 $(this).children(".m-default").stop().fadeIn(200);
-			 $(this).children(".m-ninza").stop().fadeOut(200);
+ 			 $(this).children(".m-default").stop().fadeIn(200);
+			 $(this).children(".m-ninza").stop().fadeOut(100);
 		 });
 		}
 		

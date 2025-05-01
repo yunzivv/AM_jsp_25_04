@@ -22,27 +22,22 @@ $(".menu").click(function() {
 </script>
 <body class="text-neutral-600">
 
-	<div class="flex h-30 w-full p-4">	
-		<div class="logo bg-blue-300 pl-4">
+	<div class="flex h-30 w-full p-4 m-2">	
+		<div class="logo pl-4">
 		<a href="../home/main">
 			<img class="w-16" src="https://velog.velcdn.com/images/yunzivv/post/07e66c14-b81b-4641-93ac-7b33c5e206d7/image.png" alt="" />
 		</a>
 		</div>
 		
-		<div class="flex-grow bg-red-300"></div>
+		<div class="flex-grow"></div>
 		
-		<div class="menu-box flex items-center">
-			<div class="menu text-3xl text-neutral-800">
-			<i class="fa-solid fa-compass"></i>
-			</div>
-			
-			<div class="member text-3xl text-neutral-800 mx-8">
-			<% if(isLogined) { %>
-			<i class="fa-solid fa-user-ninja"></i>
-			<% } else {%>
-			<i class="fa-solid fa-user"></i>
-			<% } %>
-			</div>
+		<div class="menu-box flex items-center mr-6 bg-red-300 text-3xl text-neutral-800">
+			<ul class="menu">
+				<li><a href="#">Dojo</a></li>
+				<li><a href="../article/list">Ninza Board</a></li>
+				<li><a href="#">About Ninza</a></li>
+				<li><a href="../ninza/contact">Contact</a></li>
+			</ul>
 		</div>		
 	</div>
 		

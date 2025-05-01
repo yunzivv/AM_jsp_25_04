@@ -149,6 +149,7 @@ table>tbody>tr:last-child {
 	</div>
 
 	<%@ include file="../part/footer.jspf"%>
-
+	<%@ include file="../part/member.jspf"%>
+	
 </body>
 </html>
