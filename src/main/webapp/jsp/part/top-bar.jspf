@@ -1,4 +1,4 @@
-<%@page import="java.util.*" %>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -15,35 +16,40 @@ button {
 </style>
 <body>
 
+	<div class="container">
+		<%
+		if (!isLogined) {
+		%>
 
-	<%
-	if (!isLogined) {
-	%>
-	<button>
-		<a href="../member/join">회원가입</a>
-	</button>
-	<button>
-		<a href="../member/login">로그인</a>
-	</button>
-	<%
-	}
-	%>
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+			<a href="../member/join">회원가입</a>
+		</button>
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+			<a href="../member/login">로그인</a>
+		</button>
+		<%
+		}
+		%>
 
-	<%
-	if (isLogined) {
-	%>
-	<button>
-		<a href="../member/doLogout">로그아웃</a>
-	</button>
-	<button>
-		<a href="../member/mypage"">마이페이지</a>
-	</button>
-	<div>
-	<%=loginedMember.getName() %>
+		<%
+		if (isLogined) {
+		%>
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+			<a href="../member/doLogout">로그아웃</a>
+		</button>
+		<button type="button"
+			class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+			<a href="../member/mypage""><%=loginedMember.getName()%>님</a>
+		</button>
+		<%
+		}
+		%>
 	</div>
-	<%
-	}
-	%>
+
+
 
 </body>
 </html>

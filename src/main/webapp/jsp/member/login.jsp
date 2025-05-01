@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
 <title>Member join</title>
 
 </head>

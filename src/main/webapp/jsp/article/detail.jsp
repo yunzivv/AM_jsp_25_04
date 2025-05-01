@@ -19,6 +19,7 @@ String loginedMemberLoginId = (String) request.getAttribute("loginedMemberLoginI
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
 .container {
 	max-width: 1000px;
@@ -57,6 +58,7 @@ span {
 				<div class="writeInfo" style="color: gray;">
 					<span> 작성 일자 : <%=article.getRegDate().toString().substring(0, 10)%></span>
 					<span> 작성자 : <%= article.getWriter() %></span>
+					<span> 조회수 : <%=article.getHit() %></span>
 				</div>
 				<%if(writerCheck) { %>
 				<div class="articleBtn">
