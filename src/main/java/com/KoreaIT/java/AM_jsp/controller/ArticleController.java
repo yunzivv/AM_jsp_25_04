@@ -59,9 +59,15 @@ public class ArticleController {
 
 	public void showList() throws ServletException, IOException {
 
+		// search keyword	
+		String keyword = "";
+		if (request.getParameter("keyword") != null && request.getParameter("keyword").length() != 0) {
+			keyword = request.getParameter("keyword");
+		}
+		
+		
 		// pagenation
 		int page = 1;
-
 		if (request.getParameter("page") != null && request.getParameter("page").length() != 0) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
@@ -71,7 +77,7 @@ public class ArticleController {
 		int totalCnt = articleService.getArticleCnt();
 		int totalPage = (int) Math.ceil(totalCnt / (double) itemsInAPage);
 
-		List<Article> articles = articleService.getForPrintArticles(limitFrom, itemsInAPage);
+		List<Article> articles = articleService.getForPrintArticles(keyword, limitFrom, itemsInAPage);
 
 		request.setAttribute("page", page);
 		request.setAttribute("articles", articles);

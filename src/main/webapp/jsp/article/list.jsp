@@ -92,16 +92,16 @@ table>tbody>tr:last-child {
 		<button><a href="write">WRITE</a></button>
 		<form class="search-box flex text-neutral-400 h-8" action="list" method="POST">
 			<div class="mx-2">
-				<input type="date" data-placeholder="START DATE" class="block h-full"/> 
+				<input type="date" name="start" class="block h-full"/> 
 			</div>
 			<div class="mx-2">
-				<input type="date"  data-placeholder="END DATE" class="block h-full"/> 
+				<input type="date"  name="end" class="block h-full"/> 
 			</div>
 			<section class="flex-grow"></section>
 			<div class="bg-neutral-800 mx-2 w-60 flex">
-				<input type="text" placeholder="search keyword" class="block flex-grow px-2"/>
+				<input type="text" name="keyword" placeholder="search keyword" class="block flex-grow px-2"/>
 				<button type="submit">
-					<i class="fa-solid fa-magnifying-glass text-neutral-200 text-xl"></i>
+					<i class="fa-solid fa-magnifying-glass text-neutral-200 text-xl px-1"></i>
 				</button>
 			</div>
 		</form>

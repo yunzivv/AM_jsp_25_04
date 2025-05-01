@@ -26,12 +26,13 @@ public class ArticleDao {
 	}
 
 	// 한 페이지 당 보여줄 article 반환
-	public List<Article> getForPrintArticles(int limitFrom, int itemsInAPage) {
+	public List<Article> getForPrintArticles(String keyword, int limitFrom, int itemsInAPage) {
 
 		SecSql sql = SecSql.from("SELECT *");
 		sql.append("FROM article A");
 		sql.append("JOIN `member` M");
 		sql.append("ON A.loginId = M.id");
+		sql.append("WHERE title LIKE ?", "%" + keyword + "%");
 		sql.append("ORDER BY A.id DESC");
 		sql.append("LIMIT ?, ?;", limitFrom, itemsInAPage);
 

@@ -26,9 +26,9 @@ public class ArticleService {
 	}
 
 	// 한 페이지 당 보여줄 article 반환
-	public List<Article> getForPrintArticles(int limitFrom, int itemsInAPage) {
+	public List<Article> getForPrintArticles(String keyword, int limitFrom, int itemsInAPage) {
 
-		return articleDao.getForPrintArticles(limitFrom, itemsInAPage);
+		return articleDao.getForPrintArticles(keyword, limitFrom, itemsInAPage);
 	}
 
 	// 해당 id를 가진 1개의 article 반환
