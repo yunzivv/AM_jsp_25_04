@@ -56,7 +56,7 @@ span {
 				
 				<div class="writeInfo" style="color: gray;">
 					<span> 작성 일자 : <%=article.getRegDate().toString().substring(0, 10)%></span>
-					<span> 작성자 : <%= article.getLoginId() %></span>
+					<span> 작성자 : <%= article.getWriter() %></span>
 				</div>
 				<%if(writerCheck) { %>
 				<div class="articleBtn">

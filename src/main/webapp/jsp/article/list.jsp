@@ -95,7 +95,7 @@ table>thead>tr>th, table>tbody>tr>td {
 				<td><%=article.getId()%>번</td>
 				<td><%=article.getRegDate().toString().substring(0,10) %></td>
 				<td><a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a></td>
-				<td><%=article.getRegDate()%></td>
+				<td><%=article.getWriter()%></td>
 			</tr>
 			<%
 			}
