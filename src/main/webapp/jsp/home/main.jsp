@@ -33,11 +33,6 @@ a {
 		<span class="block">ACADEMY</span>
 	</div>
 
-	<div class="text-center text-neutral-400;">
-		<button>
-			<a href="../article/list">리스트</a>
-		</button>
-	</div>
 
 <%@ include file="../part/footer.jspf"%>
 <%@ include file="../part/member.jspf"%>

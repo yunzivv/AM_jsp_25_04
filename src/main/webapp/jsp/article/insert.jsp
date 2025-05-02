@@ -28,11 +28,11 @@ input, textarea {
 </style>
 </head>
 <body>
+	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
 
 	<h2 style="text-align: center;">
 		Article Write
 	</h2>
-
 
 
 	<form action="doWrite" method="POST">

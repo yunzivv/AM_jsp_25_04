@@ -136,7 +136,7 @@ public class MemberController {
 		
 		if(!isLogined()) {
 			response.getWriter()
-			.append("<script>alert('닌자 확인 후 가능'); location.replace('../home/main');</script>");
+			.append("<script>alert('닌자 확인 후 가능'); location.replace('../member/login');</script>");
 			return;
 		}
 		

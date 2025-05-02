@@ -44,7 +44,7 @@ span {
 <title>Article <%=article.getId()%></title>
 </head>
 <body>
-	<%@ include file="../part/top-bar.jspf" %>
+	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
 	<button><a href="../home/main">메인으로 이동</a></button>
 	<button><a href="../article/list">리스트</a></button>
 	<div class="container"

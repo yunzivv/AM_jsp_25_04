@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-	<a class="block text-2xl pt-2 pl-2" href="../home/main"><i class="fa-solid fa-angle-left"></i></a>
+	<%@ include file="../part/top-bar.jspf"%>
 	<div class="title text-neutral-800 text-8xl font-bold px-8 bg-red-300">
 		NINZA PROFILE
 		<div>

@@ -30,16 +30,16 @@ public class ArticleController {
 		this.articleService = new ArticleService(conn);
 	}
 
-	private Article getArticle(int id) {
-
-		SecSql sql = SecSql.from("SELECT *");
-		sql.append("FROM article");
-		sql.append("WHERE id = ?;", id);
-
-		Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-
-		return articleRow != null ? new Article(articleRow) : null;
-	}
+//	private Article getArticle(int id) {
+//
+//		SecSql sql = SecSql.from("SELECT *");
+//		sql.append("FROM article");
+//		sql.append("WHERE id = ?;", id);
+//
+//		Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
+//
+//		return articleRow != null ? new Article(articleRow) : null;
+//	}
 
 	private boolean isLogined() {
 		return request.getSession().getAttribute("loginedMember") != null;
@@ -137,7 +137,7 @@ public class ArticleController {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		// 해당 id를 가진 article 저장
-		Article article = getArticle(id);
+		Article article = articleService.getArticle(id);
 		int writerId = (int) article.getLoginId();
 		int loginedMemberId = getLoginedMemberId();
 
@@ -174,7 +174,7 @@ public class ArticleController {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		// article 작성자 id
-		Article article = getArticle(id);
+		Article article = articleService.getArticle(id);
 		int writerId = (int) article.getLoginId();
 
 		// 로그인 멤버 id

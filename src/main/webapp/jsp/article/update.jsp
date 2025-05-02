@@ -29,7 +29,7 @@ input, textarea {
 </style>
 </head>
 <body>
-
+	<a class="block text-2xl pt-2 pl-2" href="detail?id=<%=id%>"><i class="fa-solid fa-angle-left"></i></a>
 	<h2>
 		Article
 		<%=id%>
