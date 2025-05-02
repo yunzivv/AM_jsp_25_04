@@ -7,6 +7,7 @@
 <%
 Article article = (Article) request.getAttribute("article");
 int id = (int) request.getAttribute("id");
+String site = (String) request.getAttribute("site");
 %>
 
 <!-- ctrl shift c -->

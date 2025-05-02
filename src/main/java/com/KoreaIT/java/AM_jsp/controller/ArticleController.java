@@ -30,17 +30,6 @@ public class ArticleController {
 		this.articleService = new ArticleService(conn);
 	}
 
-//	private Article getArticle(int id) {
-//
-//		SecSql sql = SecSql.from("SELECT *");
-//		sql.append("FROM article");
-//		sql.append("WHERE id = ?;", id);
-//
-//		Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-//
-//		return articleRow != null ? new Article(articleRow) : null;
-//	}
-
 	private boolean isLogined() {
 		return request.getSession().getAttribute("loginedMember") != null;
 	}
@@ -78,6 +67,8 @@ public class ArticleController {
 
 		List<Article> articles = articleService.getForPrintArticles(keyword, limitFrom, itemsInAPage);
 
+		request.setAttribute("site", "list");
+		
 		request.setAttribute("keyword", keyword);
 		
 		request.setAttribute("page", page);
@@ -97,6 +88,8 @@ public class ArticleController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		articleService.updateHits(id);
 
+		request.setAttribute("site", "detail");
+		
 		request.setAttribute("article", articleService.getArticle(id));
 		
 		request.setAttribute("isLogined", isLogined());
@@ -114,6 +107,8 @@ public class ArticleController {
 			return;
 		}
 
+		request.setAttribute("site", "write");
+		
 		request.getRequestDispatcher("/jsp/article/insert.jsp").forward(request, response);
 
 	}
@@ -148,6 +143,8 @@ public class ArticleController {
 			return;
 		}
 
+		request.setAttribute("site", "modify");
+		
 		request.setAttribute("article", article);
 		request.setAttribute("id", id);
 

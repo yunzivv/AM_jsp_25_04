@@ -43,6 +43,8 @@ public class HomeController {
 		Member loginedMember = getLoginedMember();
 		int loginedMemberId = getLoginedMemberId();
 		
+		request.setAttribute("site", "main");
+		
 		request.setAttribute("isLogined", isLogined);
 		request.setAttribute("loginedMember", loginedMember);
 		request.setAttribute("loginedMemberId", loginedMemberId);

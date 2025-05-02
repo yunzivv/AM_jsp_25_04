@@ -12,6 +12,7 @@ boolean isLogined = (boolean) request.getAttribute("isLogined");
 
 Member loginedMember = (Member) request.getAttribute("loginedMember");
 String loginedMemberLoginId = (String) request.getAttribute("loginedMemberLoginId");
+String site = (String) request.getAttribute("site");
 %>
 
 <!-- ctrl shift c -->
@@ -44,6 +45,7 @@ span {
 <title>Article <%=article.getId()%></title>
 </head>
 <body>
+	<%@ include file="../part/top-bar.jspf"%>
 	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
 	<button><a href="../home/main">메인으로 이동</a></button>
 	<button><a href="../article/list">리스트</a></button>

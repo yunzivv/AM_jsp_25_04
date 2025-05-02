@@ -79,6 +79,7 @@ public class MemberController {
 			return;
 		}
 		
+		request.setAttribute("site", "login");
 		request.getRequestDispatcher("/jsp/member/login.jsp").forward(request, response);
 		
 	}
@@ -140,6 +141,7 @@ public class MemberController {
 			return;
 		}
 		
+		request.setAttribute("site", "mypage");
 		request.getRequestDispatcher("/jsp/member/mypage.jsp").forward(request, response);
 		
 	}

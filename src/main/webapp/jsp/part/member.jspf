@@ -14,10 +14,11 @@
 	width: 66px;
 	height: 66px;
 }
+
 </style>
 
 <body>
-	<div class="member fixed right-10 bottom-10 overflow-hidden">
+	<div class="member fixed right-10 bottom-10 overflow-visible">
 		<div class="member-btn overflow-hidden rounded-full">
 			
 <!-- 		default btn -->
@@ -28,14 +29,6 @@
 			<i class="fa-solid fa-user text-3xl"></i>
 			<% } %>	
 			</div>
-		
-<!-- 		sub btn -->
-<!-- 			<div class="sub-btn hidden absolute -top-20 bg-neutral-800 text-neutral-200 px-5 py-4 rounded-full"> -->
-<!-- 				<a class="block relative w-full h-full px-5 py-4" href="../member/login"> -->
-<!-- 					<i class="fa-solid fa-user-ninja text-3xl"></i> -->
-<!-- 					<span class="absolute -left-32 p-2 top-1 rounded-full bg-neutral-200 text-neutral-800">Login/Join</span> -->
-<!-- 				</a> -->
-<!-- 			</div> -->
 			
 <!-- 		enter btn -->
 			<div class="m-ninza hidden z-10 text-neutral-200 bg-neutral-800 overflow-hidden">
@@ -43,6 +36,10 @@
 					<span class="absolute -left-32 p-2 top-1 rounded-full bg-neutral-200 text-neutral-800">My Ninza</span>
 					<i class="fa-solid fa-user-ninja text-3xl"></i>
 				</a>
+			</div>
+			
+			<div class="logout-btn hidden absolute font-medium text-center pt-5 -top-20 right-0 bg-neutral-800 text-neutral-200 rounded-full overflow-hidden">
+				<a href="../member/doLogout">OUT</a>
 			</div>
 		</div>	
 		
@@ -54,20 +51,37 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 	<script type="text/javascript">
-		function ninza() {
-		 $(".member").on("mouseenter", function (){
- 			 $(".m-default").stop().fadeOut(100);
-			 $(".m-ninza").stop().fadeIn(100);
-			 $(".sub-btn").stop().fadeIn(100);
-		 });
-		 $(".member").on("mouseleave", function (){
- 			 $(".m-default").stop().fadeIn(200);
-			 $(".m-ninza").stop().fadeOut(100);
-			 $(".sub-btn").stop().fadeOut(100);
-		 });
-		}
-		
-		ninza();
+	
+	function ninza() {
+		let hoverTimeout;
+
+		$(".member").on("mouseenter", function () {
+			clearTimeout(hoverTimeout);
+			$(".m-default").stop().fadeOut(100);
+			$(".m-ninza").stop().fadeIn(100);
+			$(".logout-btn").stop().fadeIn(100);
+		});
+
+		$(".member").on("mouseleave", function () {
+			
+			hoverTimeout = setTimeout(() => {
+				$(".m-default").stop().fadeIn(200);
+				$(".m-ninza").stop().fadeOut(100);
+				$(".logout-btn").stop().fadeOut(100);
+			}, 100);
+		});
+		$(".logout-btn").on("mouseenter", function () {
+			clearTimeout(hoverTimeout);
+		}).on("mouseleave", function () {
+			hoverTimeout = setTimeout(() => {
+				$(".m-default").stop().fadeIn(200);
+				$(".m-ninza").stop().fadeOut(100);
+				$(".logout-btn").stop().fadeOut(100);
+			}, 200);
+		});
+	}
+
+	ninza();
 	</script>
 </body>
 </html>

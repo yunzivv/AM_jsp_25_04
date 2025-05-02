@@ -17,9 +17,12 @@
 </style>
 </head>
 <body>
-	<%@ include file="../part/top-bar.jspf"%>
+<%-- 	<%@ include file="../part/top-bar.jspf"%> --%>
 	<div class="title text-neutral-800 text-8xl font-bold px-8 bg-red-300">
+		<span>
 		NINZA PROFILE
-		<div>
+		</span>
+		
+	</div>
 </body>
 </html>

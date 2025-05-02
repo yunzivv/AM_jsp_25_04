@@ -33,26 +33,43 @@
 		
 		<div class="flex-grow"></div>
 		
-		<div class="menu-box flex items-center mr-6 text-3xl text-neutral-800">
+		<div class="menu-box items-center mr-6 text-3xl text-neutral-800">
+			<%if(site.equals("main")) { %>
+<!-- 			String requestURI = request.getRequestURI().split("/")[4]; -->
 			<ul class="menu">
 				<li class="hover:underline hover:text-neutral-300"><a href="#">Dojo</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="../article/list">Ninza Board</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="#">About Ninza</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="../ninza/contact">Contact</a></li>
 			</ul>
+			<%} else { %>
+			<ul class="menu flex">
+				<li class="hover:underline hover:text-neutral-300"><a id="menu-dojo" class="block px-6" href="#">Dojo</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a id="menu-list" class="block px-6" href="../article/list">Ninza Board</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a id="menu-about" class="block px-6" href="#">About Ninza</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a class="block px-6" href="../ninza/contact">Contact</a></li>
+			</ul>
+			<%} %>
 		</div>		
 	</div>
 		
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <script type="text/javascript">
-fuction shurikenSpin(){
+function shurikenSpin(){
 	$(".logo").click(function() {
 		$(this).children("a").css("transform", "rotate(180deg)");
 	});
 	
 };
 
+$(function () {
+    const site = "<%= request.getAttribute("site") %>";
+    $("#menu-" + site).addClass("underline font-bold");
+});
+
+console.log("site:", site);
 shurikenSpin();
 </script>
 </body>

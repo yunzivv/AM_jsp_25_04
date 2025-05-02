@@ -14,6 +14,8 @@ int cPage = (int) request.getAttribute("page");
 int totalPage = (int) request.getAttribute("totalPage");
 int totalCnt = (int) request.getAttribute("totalCnt");
 String keyword = (String) request.getAttribute("keyword");
+
+String site = (String) request.getAttribute("site");
 %>
 <!DOCTYPE html>
 <html>
@@ -72,7 +74,7 @@ table>tbody>tr:last-child {
 	</div>
 
 
-	<div class="aboutArticle w-11/12 mx-auto my-2">
+	<div class="search-bar w-11/12 mx-auto my-2">
 		<form class="search-box flex text-neutral-400 h-8" action="list" method="POST">
 			<div class="mx-2 border rounded-md border-neutral-400 overflow-hidden">
 				<input type="date" name="start" class="block h-full p-2"/> 
@@ -95,7 +97,7 @@ table>tbody>tr:last-child {
 		
 	</div>
 
-	<div class="overflow-x-auto w-11/12 mx-auto mb-4 border-solid border bg-red-300">
+	<div class="overflow-x-auto w-11/12 mx-auto my-4 border-solid border bg-red-300">
 		<table class="w-full text-sm text-center rtl:text-right text-neutral-800 text-neutral-400">
 			<thead class="text-base text-neutral-200 bg-neutral-800">
 				<tr>

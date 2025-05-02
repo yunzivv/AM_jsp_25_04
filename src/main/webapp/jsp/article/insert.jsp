@@ -3,7 +3,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+String site = (String) request.getAttribute("site");
+%>
 <!-- ctrl shift c -->
 <!DOCTYPE html>
 <html>
@@ -28,8 +30,9 @@ input, textarea {
 </style>
 </head>
 <body>
-	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
 
+	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
+	<%@ include file="../part/top-bar.jspf"%>
 	<h2 style="text-align: center;">
 		Article Write
 	</h2>
