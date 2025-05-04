@@ -37,10 +37,11 @@
 					<i class="fa-solid fa-user-ninja text-3xl"></i>
 				</a>
 			</div>
-			
+			<% if(isLogined) { %>
 			<div class="logout-btn hidden absolute font-medium text-center pt-5 -top-20 right-0 bg-neutral-800 text-neutral-200 rounded-full overflow-hidden">
 				<a href="../member/doLogout">OUT</a>
 			</div>
+			<% } %>	
 		</div>	
 		
 
