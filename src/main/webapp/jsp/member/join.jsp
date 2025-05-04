@@ -56,24 +56,43 @@
 </head>
 <body>
 
-	<h2 style="text-align: center;">
-		회원가입
-	</h2>
-
-	<form onsubmit="return validate();" name="join" action="doJoin" method="POST">
+<!-- 	<form onsubmit="return validate();" name="join" action="doJoin" method="POST"> -->
 		
-		<div style="display:flex; flex-direction:column; justify-content: center;">
-  			<section> 아이디 : <input type="text" name="loginId" id="loginId" placeholder="4~12자의 영문 대소문자와 숫자" /></section>
-  			<br>
-  			<section> 비밀번호 : <input type="password" autocomplete="off" name="loginPw" id="loginPw" placeholder="4~12자의 영문 대소문자와 숫자" /></section>
-  			<br>
-  			<section> 비밀번호 확인 : <input type="password" autocomplete="off" name="checkLoginPw" id="checkLoginPw" placeholder="비밀번호 확인" /></section>
-  			<br>
-  			<section> 이름 : <input type="text" name="name" id="name" placeholder="이름 입력" /></section>
-  			<br>
- 		</div>
-  		<button type="submit">작성하기</button>
+<!-- 		<div style="display:flex; flex-direction:column; justify-content: center;"> -->
+<!--   			<section> 아이디 : <input type="text" name="loginId" id="loginId" placeholder="4~12자의 영문 대소문자와 숫자" /></section> -->
+<!--   			<br> -->
+<!--   			<section> 비밀번호 : <input type="password" autocomplete="off" name="loginPw" id="loginPw" placeholder="4~12자의 영문 대소문자와 숫자" /></section> -->
+<!--   			<br> -->
+<!--   			<section> 비밀번호 확인 : <input type="password" autocomplete="off" name="checkLoginPw" id="checkLoginPw" placeholder="비밀번호 확인" /></section> -->
+<!--   			<br> -->
+<!--   			<section> 이름 : <input type="text" name="name" id="name" placeholder="이름 입력" /></section> -->
+<!--   			<br> -->
+<!--  		</div> -->
+<!--   		<button type="submit">작성하기</button> -->
   		
-	</form>
+<!-- 	</form> -->
+	
+	<div class="container mx-auto mt-32 max-w-min p-4 bg-neutral-200 border border-solid border-neutral-300 rounded-lg">
+		<div class="title mt-4 mb-8 text-center text-2xl font-semibold">
+			 Join Ninza
+		</div>
+		<form onsubmit="return validate();" name="join" action="doJoin" method="POST">
+			
+			<div style="display:flex; flex-direction:column; justify-content: center;">
+	  			
+				<input type="text" name="loginId" id="loginId" class="bg-neutral-50 border border-neutral-300 text-neutral-800 text-sm rounded-lg block w-96 p-2.5" placeholder="Ninza ID">
+				<div class="text-neutral-400 mb-6 px-2">Enter at least 4 letters and numbers</div>
+				<input type="password" name="loginPw" id="loginPw" class="bg-neutral-50 border border-neutral-300 text-neutral-800 text-sm rounded-lg block w-96  p-2.5" placeholder="Ninza Password">
+				<div class="text-neutral-400 mb-6 px-2">Enter at least 4 letters and numbers</div>
+				<input type="password" name="checkLoginPw" id="checkLoginPw" class="bg-neutral-50 border border-neutral-300 text-neutral-800 text-sm rounded-lg block w-96  p-2.5" placeholder="Ninza Password Check">
+				<div class="text-neutral-400 mb-6 px-2">Enter your password again to confirm it</div>
+				<input type="text" name="name" id="name" class="mb-6 bg-neutral-50 border border-neutral-300 text-neutral-800 text-sm rounded-lg block w-96  p-2.5" placeholder="Ninza Name">
+	 		</div>
+	 		<button type="submit" class="py-2.5 px-5 me-2 mb-2 w-96 text-sm font-large bg-neutral-800 text-neutral-200 rounded-lg hover:bg-neutral-700">Join</button>
+		</form>
+		<div class="sub-menu text-center my-4 flex justify-center">
+			<a class="hover:text-underline" href="login">Ninja Login</a>	
+		</div>
+	</div>
 </body>
 </html>
