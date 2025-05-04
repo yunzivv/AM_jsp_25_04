@@ -97,7 +97,6 @@ public class MemberController {
 			return;
 		}
 		
-		System.out.println(member);
 		String checkPw = member.getLoginPw();
 		String name = member.getName();
 		
