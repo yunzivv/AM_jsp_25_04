@@ -46,8 +46,8 @@ span {
 </head>
 <body>
 	<%@ include file="../part/top-bar.jspf"%>
-	<button onclick="history.back()" class="block text-4xl pl-10 pt-6 cursor-pointer"><i class="fa-solid fa-angle-left"></i>
-<!-- 	<a class="block text-4xl pl-10 pt-6" href="list"><i class="fa-solid fa-angle-left"></i></a> -->
+	<button onclick="history.back()" class="block text-4xl pl-10 pt-6 cursor-pointer">
+		<i class="fa-solid fa-angle-left"></i>
 	</button>
 	<div class="container"
 		style="border: gray solid 1px; border-radius: 30px; padding: 20px 30px;">

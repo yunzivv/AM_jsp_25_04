@@ -68,19 +68,16 @@ table>tbody>tr:last-child {
 		<div class="title text-6xl font-bold ml-3">
 			<span>Ninza Board</span>
 		</div>
-		<button>
-			<a href="write">새 글 작성</a>
-		</button>
 	</div>
 
 
-	<div class="search-bar w-11/12 mx-auto my-2">
+	<div class="search-bar w-11/12 mx-auto my-10 px-2">
 		<form class="search-box flex text-neutral-400 h-8" action="list" method="POST">
 			<div class="mx-2 border rounded-md border-neutral-400 overflow-hidden">
-				<input type="date" name="start" class="block h-full p-2"/> 
+				<input type="date" name="start" class="block h-full p-4"/> 
 			</div>
 			<div class="mx-2  border rounded-md border-neutral-400 overflow-hidden">
-				<input type="date"  name="end" class="block h-full p-2"/> 
+				<input type="date"  name="end" class="block h-full p-4"/> 
 			</div>
 			<div class="flex-grow"></div>
 			<div class="border rounded-md border-neutral-400 overflow-hidden mx-2 w-80 flex bg-neutral-800">
@@ -88,16 +85,19 @@ table>tbody>tr:last-child {
 				<%if(keyword.length() != 0) { %>
 				value=<%=keyword %>
 				<%} %>
-				class="block flex-grow p-2"/>
+				class="block flex-grow p-4"/>
 				<button type="submit">
 					<i class="fa-solid fa-magnifying-glass text-neutral-200 text-xl px-1"></i>
 				</button>
 			</div>
+			<div class="px-2">
+		<a class="block w-28 h-8 text-base flex items-center justify-center font-large bg-neutral-800 text-neutral-200 rounded-md hover:bg-neutral-700" href="write">새 글 작성</a>
+	</div>
 		</form>
 		
 	</div>
 
-	<div class="overflow-x-auto w-11/12 mx-auto my-4 border-solid border bg-red-300">
+	<div class="w-11/12 mx-auto my-4 border-solid border bg-red-300"><!-- overflow-x-auto -->
 		<table class="w-full text-sm text-center rtl:text-right text-neutral-800 text-neutral-400">
 			<thead class="text-base text-neutral-200 bg-neutral-800">
 				<tr>
@@ -127,6 +127,7 @@ table>tbody>tr:last-child {
 			</tbody>
 		</table>
 	</div>
+	
 
 	<div class="page text-neutral-800 text-center mb-16">
 		<%
