@@ -46,9 +46,9 @@ span {
 </head>
 <body>
 	<%@ include file="../part/top-bar.jspf"%>
-	<a class="block text-2xl pt-2 pl-2" href="list"><i class="fa-solid fa-angle-left"></i></a>
-	<button><a href="../home/main">메인으로 이동</a></button>
-	<button><a href="../article/list">리스트</a></button>
+	<button onclick="history.back()" class="block text-4xl pl-10 pt-6 cursor-pointer"><i class="fa-solid fa-angle-left"></i>
+<!-- 	<a class="block text-4xl pl-10 pt-6" href="list"><i class="fa-solid fa-angle-left"></i></a> -->
+	</button>
 	<div class="container"
 		style="border: gray solid 1px; border-radius: 30px; padding: 20px 30px;">
 
