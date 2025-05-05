@@ -63,11 +63,11 @@ table>tbody>tr:last-child {
 	
 	<%@ include file="../part/top-bar.jspf"%>
 	
-
-	<div class="header w-11/12 mx-auto my-8 p-6 text-neutral-800">
-		<div class="title text-6xl font-bold ml-3">
-			<span>Ninza Board</span>
-		</div>
+	<div class="title text-neutral-800 text-8xl font-bold my-8 px-10">
+		<span>
+		Ninza Board
+		</span>
+		
 	</div>
 
 

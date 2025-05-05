@@ -19,12 +19,11 @@ String methodName = (String) request.getAttribute("methodName");
 </head>
 <body>
 	<%@ include file="../part/top-bar.jspf"%>
-<%-- 	<%@ include file="../part/top-bar.jspf"%> --%>
-	<div class="title text-neutral-800 text-8xl font-bold px-8 bg-red-300">
+
+	<div class="title text-neutral-800 text-8xl font-bold my-8 px-10 bg-red-300">
 		<span>
 		NINZA PROFILE
 		</span>
-		
 	</div>
 </body>
 </html>

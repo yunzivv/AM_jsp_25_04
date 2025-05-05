@@ -68,7 +68,6 @@ $(function () {
     $("#menu-" + methodName).addClass("underline font-bold");
 });
 
-console.log("site:", methodName);
 shurikenSpin();
 </script>
 </body>
