@@ -29,6 +29,20 @@ public class NinzaController {
 		this.response = response;
 		this.articleService = new ArticleService(conn);
 	}
+	
+	public void dojo() throws ServletException, IOException {
+		
+		request.setAttribute("methodName", "dojo");
+		request.getRequestDispatcher("/jsp/ninza/dojo.jsp").forward(request, response);
+		
+	}
+	
+	public void about() throws ServletException, IOException {
+		
+		request.setAttribute("methodName", "about");
+		request.getRequestDispatcher("/jsp/ninza/about.jsp").forward(request, response);
+		
+	}
 
 	public void contact() throws ServletException, IOException {
 		

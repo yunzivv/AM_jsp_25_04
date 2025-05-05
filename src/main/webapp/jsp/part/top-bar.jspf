@@ -33,19 +33,19 @@
 		
 		<div class="flex-grow"></div>
 		
-		<div class="menu-box items-center mr-6 text-3xl text-neutral-800">
+		<div class="menu-box items-center mr-6 text-4xl text-neutral-800">
 			<%if(methodName.equals("main")) { %>
 			<ul class="menu">
-				<li class="hover:underline hover:text-neutral-300"><a href="#">Dojo</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="../ninza/dojo">Dojo</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="../article/list">Ninza Board</a></li>
-				<li class="hover:underline hover:text-neutral-300"><a href="#">About Ninza</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a href="../ninza/about">About Ninza</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="../ninza/contact">Contact</a></li>
 			</ul>
 			<%} else { %>
 			<ul class="menu flex">
-				<li class="hover:underline hover:text-neutral-300"><a id="menu-dojo" class="block px-6" href="#">Dojo</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a id="menu-dojo" class="block px-6" href="../ninza/dojo">Dojo</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a id="menu-list" class="block px-6" href="../article/list">Ninza Board</a></li>
-				<li class="hover:underline hover:text-neutral-300"><a id="menu-about" class="block px-6" href="#">About Ninza</a></li>
+				<li class="hover:underline hover:text-neutral-300"><a id="menu-about" class="block px-6" href="../ninza/about">About Ninza</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a class="block px-6" href="../ninza/contact">Contact</a></li>
 			</ul>
 			<%} %>

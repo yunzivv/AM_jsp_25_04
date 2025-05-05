@@ -147,6 +147,12 @@ public class DispatcherServlet extends HttpServlet {
 				NinzaController ninzaController = new NinzaController(request, response, conn);
 				
 				switch(actionMethodName) {
+				case "dojo":
+					ninzaController.dojo();
+					break;
+				case "about":
+					ninzaController.about();
+					break;
 				case "contact":
 					ninzaController.contact();
 					break;
