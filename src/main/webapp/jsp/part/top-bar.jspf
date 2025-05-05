@@ -34,8 +34,7 @@
 		<div class="flex-grow"></div>
 		
 		<div class="menu-box items-center mr-6 text-3xl text-neutral-800">
-			<%if(site.equals("main")) { %>
-<!-- 			String requestURI = request.getRequestURI().split("/")[4]; -->
+			<%if(methodName.equals("main")) { %>
 			<ul class="menu">
 				<li class="hover:underline hover:text-neutral-300"><a href="#">Dojo</a></li>
 				<li class="hover:underline hover:text-neutral-300"><a href="../article/list">Ninza Board</a></li>
@@ -65,11 +64,11 @@ function shurikenSpin(){
 };
 
 $(function () {
-    const site = "<%= request.getAttribute("site") %>";
-    $("#menu-" + site).addClass("underline font-bold");
+	const methodName = "<%= request.getAttribute("methodName") %>";
+    $("#menu-" + methodName).addClass("underline font-bold");
 });
 
-console.log("site:", site);
+console.log("site:", methodName);
 shurikenSpin();
 </script>
 </body>

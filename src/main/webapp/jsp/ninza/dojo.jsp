@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String site = (String) request.getAttribute("site");    
+String methodName = (String) request.getAttribute("methodName");
 %>
 <!DOCTYPE html>
 <html>
@@ -10,6 +10,7 @@ String site = (String) request.getAttribute("site");
 <title>Dojo</title>
 </head>
 <body>
+	<%@ include file="../part/top-bar.jspf"%>
 
 </body>
 </html>

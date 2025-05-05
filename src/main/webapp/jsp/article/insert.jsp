@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-String site = (String) request.getAttribute("site");
+String methodName = (String) request.getAttribute("methodName");
 %>
 <!-- ctrl shift c -->
 <!DOCTYPE html>

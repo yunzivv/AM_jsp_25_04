@@ -12,7 +12,8 @@ boolean isLogined = (boolean) request.getAttribute("isLogined");
 
 Member loginedMember = (Member) request.getAttribute("loginedMember");
 String loginedMemberLoginId = (String) request.getAttribute("loginedMemberLoginId");
-String site = (String) request.getAttribute("site");
+
+String methodName = (String) request.getAttribute("methodName");
 %>
 
 <!-- ctrl shift c -->

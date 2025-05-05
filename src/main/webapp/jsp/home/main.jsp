@@ -7,8 +7,8 @@
 boolean isLogined = (boolean) request.getAttribute("isLogined");
 String loginedMemberLoginId = (String) request.getAttribute("loginedMemberLoginId");
 Member loginedMember = (Member) request.getAttribute("loginedMember");
-String site = (String) request.getAttribute("site");
-String requestURI = request.getRequestURI().split("/")[4];
+
+String methodName = (String) request.getAttribute("methodName");
 %>
 <!DOCTYPE html>
 <html>

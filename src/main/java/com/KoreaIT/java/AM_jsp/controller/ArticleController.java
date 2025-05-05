@@ -67,7 +67,7 @@ public class ArticleController {
 
 		List<Article> articles = articleService.getForPrintArticles(keyword, limitFrom, itemsInAPage);
 
-		request.setAttribute("site", "list");
+		request.setAttribute("methodName", "list");
 		
 		request.setAttribute("keyword", keyword);
 		
@@ -88,7 +88,7 @@ public class ArticleController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		articleService.updateHits(id);
 
-		request.setAttribute("site", "detail");
+		request.setAttribute("methodName", "detail");
 		
 		request.setAttribute("article", articleService.getArticle(id));
 		
@@ -107,7 +107,7 @@ public class ArticleController {
 			return;
 		}
 
-		request.setAttribute("site", "write");
+		request.setAttribute("methodName", "write");
 		
 		request.getRequestDispatcher("/jsp/article/insert.jsp").forward(request, response);
 
@@ -143,7 +143,7 @@ public class ArticleController {
 			return;
 		}
 
-		request.setAttribute("site", "modify");
+		request.setAttribute("methodName", "modify");
 		
 		request.setAttribute("article", article);
 		request.setAttribute("id", id);

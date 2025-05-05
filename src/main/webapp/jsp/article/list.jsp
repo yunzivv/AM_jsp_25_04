@@ -15,7 +15,7 @@ int totalPage = (int) request.getAttribute("totalPage");
 int totalCnt = (int) request.getAttribute("totalCnt");
 String keyword = (String) request.getAttribute("keyword");
 
-String site = (String) request.getAttribute("site");
+String methodName = (String) request.getAttribute("methodName");
 %>
 <!DOCTYPE html>
 <html>
@@ -64,14 +64,14 @@ table>tbody>tr:last-child {
 	<%@ include file="../part/top-bar.jspf"%>
 	
 
-	<div class="header w-11/12 m-auto p-6 text-neutral-800">
+	<div class="header w-11/12 mx-auto my-8 p-6 text-neutral-800">
 		<div class="title text-6xl font-bold ml-3">
 			<span>Ninza Board</span>
 		</div>
 	</div>
 
 
-	<div class="search-bar w-11/12 mx-auto my-10 px-2">
+	<div class="search-bar w-11/12 mx-auto px-2">
 		<form class="search-box flex text-neutral-400 h-8" action="list" method="POST">
 			<div class="mx-2 border rounded-md border-neutral-400 overflow-hidden">
 				<input type="date" name="start" class="block h-full p-4"/> 
